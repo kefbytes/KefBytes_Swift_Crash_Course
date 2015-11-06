@@ -1,5 +1,5 @@
 <h2><span style="text-decoration: underline;"><strong>Swift Crash Course</strong></span></h2>
-This course is meant to be an introduction to Swift for developers. If you have no developing experience you might find this tough to follow since some common programming features are assumed and not explained.
+This course is meant to be an introduction to Swift for developers. If you have no developing experience you might find this tough since some common programming features are assumed and not explained.
 
 Each item is a link to more information about a specific topic. You will see some items marked as "Fast Track", these items give you a brief overview of a topic and usually a chance to write a line of code or two to practice what you are learning. The Fast Track items are by no means exhaustive in their detail of an item. In fact quite the opposite they are meant to give you an introduction so that you can quickly get up to speed with the basics.
 
@@ -186,28 +186,27 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 <strong>Section 5</strong>
 <ul>
 	<li>Build App
-<ul>
-	<li>Functionality to implement
-<ul>
-	<li>Core Data
-<ul>
-	<li>Setup the stack</li>
-	<li>Create Model Objects</li>
-	<li>Add, Delete &amp; Edit</li>
-</ul>
-</li>
-	<li>Table View
-<ul>
-	<li>Using FetchResultsController</li>
-	<li>Custom Table Cells</li>
-</ul>
-</li>
-	<li>API calls</li>
-	<li>Parsing JSON objects</li>
-</ul>
-</li>
-</ul>
-</li>
+	<ul>
+		<li>Functionality to implement
+		<ul>
+			<li>Core Data
+				<ul>
+					<li>Setup the stack</li>
+					<li>Create Model Objects</li>
+					<li>Add, Delete &amp; Edit</li>
+				</ul>
+			</li>
+			<li>Table View
+				<ul>
+					<li>Using FetchResultsController</li>
+					<li>Custom Table Cells</li>
+				</ul>
+			<li>API calls</li>
+			<li>Parsing JSON objects</li>
+		</ul>
+		</li>
+	</ul>
+	</li>
 </ul>
 <strong>What's Next?</strong>
 <ul>
