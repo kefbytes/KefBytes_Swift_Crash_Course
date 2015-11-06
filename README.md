@@ -4,14 +4,12 @@ This course is meant to be an introduction to Swift for developers. If you have 
 Each item is a link to more information about a specific topic. You will see some items marked as "Fast Track", these items give you a brief overview of a topic and usually a chance to write a line of code or two to practice what you are learning. The Fast Track items are by no means exhaustive in their detail of an item. In fact quite the opposite they are meant to give you an introduction so that you can quickly get up to speed with the basics.
 
 One approach you might consider is going through the Fast Track items and then writing a little app using what you have learned. This will get you down and dirty in the code as quickly as possible. If you are someone who wants to just jump in to writing an app, this should be your approach. But know that the Fast Track items leave out some more complex details of each topic that you will want to learn later.
-<!--more-->
-
 
 A second approach might be to take your time and dig deep into each topic by reading each link before moving on. It will take you longer to get to the point of building your first app, but you'll have a much deeper understanding when you do.
 
 Just do whatever works best for you and have fun with it.
 
-The playgrounds and eBook excerpt can be downloaded from <a href="https://github.com/kefbytes/Swift_Crash_Course">https://github.com/kefbytes/Swift_Crash_Course</a>. The eBook excerpt uses ObjC, but the Xcode and Interface stuff will help you get up to speed with those pieces.
+The playgrounds and eBook excerpt can be downloaded right here <a href="https://github.com/kefbytes/Swift_Crash_Course">https://github.com/kefbytes/Swift_Crash_Course</a>. The eBook excerpt uses ObjC, but the Xcode and Interface stuff will help you get up to speed with those pieces. I would recommend just downloading the full zip to your machine.
 
 The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "developing iOS 8 apps with Swift", the course is CS93P.
 
@@ -213,12 +211,15 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 </ul>
 <strong>What's Next?</strong>
 <ul>
-	<li><a href="https://swiftnews.curated.co/">If you do nothing else, subscribe to Natasha The Robot's "This Week in Swift" newsletter</a></li>
-	<li><a href="http://www.mokacoding.com/blog/when-to-use-map-flatmap-for/?utm_campaign=This%2BWeek%2Bin%2BSwift&amp;utm_medium=email&amp;utm_source=This_Week_in_Swift_57">MokaCoding - When to Use Map, FlatMap and For Loops</a></li>
-	<li><a href="https://developer.apple.com/videos/play/wwdc2015-414/">WWDC - Building better apps with value types</a></li>
-	<li><a href="https://developer.apple.com/videos/play/wwdc2015-408/">WWDC - Protocol Oriented Programming</a></li>
-	<li><a href="https://developer.apple.com/videos/play/wwdc2015-411/">WWDC - Swift in Practice</a></li>
-	<li><a href="http://austinzheng.com/2015/01/02/swift-generics-pt-1/">AustinZheng - Generics in Swift</a></li>
-	<li><a href="http://austinzheng.com/2015/09/29/swift-generics-pt-2/">AustinZheng - Generics in Swift Part 2</a></li>
-	<li><a href="http://artsy.github.io/blog/2015/09/24/mvvm-in-swift/?utm_campaign=This%2BWeek%2Bin%2BSwift&amp;utm_medium=email&amp;utm_source=This_Week_in_Swift_56">Artsy - MVVM in Swift</a></li>
+	<li>If you do nothing else, subscribe to Natasha The Robot's <a href="https://swiftnews.curated.co/">"This Week in Swift" newsletter</a></li>
+	<li>Using CocoaPods - <a href="http://www.kefbytes.com/using-cocoapods/">Swift in Practice</a></li>		
+	<li>MokaCoding - <a href="http://www.mokacoding.com/blog/when-to-use-map-flatmap-for/?utm_campaign=This%2BWeek%2Bin%2BSwift&amp;utm_medium=email&amp;utm_source=This_Week_in_Swift_57">When to Use Map, FlatMap and For Loops</a></li>
+	<li>WWDC - <a href="https://developer.apple.com/videos/play/wwdc2015-414/">Building better apps with value types</a></li>
+	<li>WWDC - <a href="https://developer.apple.com/videos/play/wwdc2015-408/">Protocol Oriented Programming</a></li>
+	<li>WWDC - <a href="https://developer.apple.com/videos/play/wwdc2015-411/">Swift in Practice</a></li>
+	<li>AustinZheng - <a href="http://austinzheng.com/2015/01/02/swift-generics-pt-1/">Generics in Swift</a></li>
+	<li>AustinZheng - <a href="http://austinzheng.com/2015/09/29/swift-generics-pt-2/">Generics in Swift Part 2</a></li>
+	<li>Artsy - <a href="http://artsy.github.io/blog/2015/09/24/mvvm-in-swift/?utm_campaign=This%2BWeek%2Bin%2BSwift&amp;utm_medium=email&amp;utm_source=This_Week_in_Swift_56">MVVM in Swift</a></li>
+	<li>Masilotti - <a href="http://masilotti.com/better-swift-unit-testing/">Better Unit Testing with Swift</a></li>
+	<li>Andrew Bancroft - T<a href="https://www.andrewcbancroft.com/2014/12/16/tdd-ios-swift-whats-goal/">DD for iOS in Swift</a></li>
 </ul>
