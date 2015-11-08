@@ -33,7 +33,7 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 </li>
 	<li>Playgrounds
 <ul>
-	<li><span style="color: #ff0000;">Fast Track</span> - Blog post on Playgrounds - still to come</li>
+	<li><a href="http://www.kefbytes.com/playground-basics/">Fast Track - Blog post on Playgrounds - still to come</a></li>
 	<li><a href="https://developer.apple.com/videos/play/wwdc2015-405/">WWDC - Authoring Rich Playgrounds</a></li>
 </ul>
 </li>
@@ -189,6 +189,8 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 	<ul>
 		<li>Functionality to implement
 		<ul>
+			<li>CocoaPods</li>
+			<li>Keychain Access</li>
 			<li>Core Data
 				<ul>
 					<li>Setup the stack</li>
