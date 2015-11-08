@@ -25,7 +25,11 @@ You can create an extension with the extension keyword.
 
 // Extent the struct Greetings.
 
+print("Hello")
 
+for var i = 0; i < 5; i++ {
+    print(i)
+}
 
 
 

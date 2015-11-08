@@ -1,0 +1,55 @@
+/* SwiftCrashCourse Build Steps */
+Steps For Building the App
+Kent Franks
+10/2/2015
+
+1.) Create Project
+
+2.) Create Layout in Interface Builder
+
+3.) Create Backing Files for each View
+
+4.) Add CocoaPods
+	
+	- This will add the KefKeychain wrapper pod used during login and the SwiftyJSON pod used later.
+
+5.) Implement Login Functionality
+
+	a. Create Login UI - Add these elements
+		- "userID" TextField
+		- "password" TextField
+		- "Create Login" Button
+		- "Login" Button
+	b. Hook them up to LoginViewController (IBOutlets)
+	
+	c. Create Constants struct
+	
+	d. Display appropriate buttons accordingly
+	
+	e. Add static createLogin func in view model
+	
+6.) Create Core Data Stack
+
+7.) Implement Add/Edit Account Functionality
+
+8.) Hydrate TableView with Accounts
+
+9.) Create Networking Stack - NSURLSession
+
+	http://api.openweathermap.org/data/2.5/weather?q=charlotte&APPID=b4babdf7c4fc57ccb46e80d1bbf8d6cb
+	
+	// add to podfile
+	pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+
+
+10.) Make API Call to Weather API
+
+	You will need to add this to the info.plist file - click the plus sign.
+		App Transport Security Settings as a Dictionary
+	And then add this to the dictionary (it will probably do so for you when you click the plus sign.
+		Allow Arbitrary Loads
+	Set the value to YES.
+
+11.) Decode JSON from Weather API
+
+12.) Implement WeatherView

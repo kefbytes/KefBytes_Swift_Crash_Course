@@ -1,0 +1,92 @@
+/* SwiftCrashCourseApp Requirements */
+
+
+The task is to build an app that does two simple things.
+1.) Display the current weather for Charlotte
+2.) Store usernames and passwords for misc accounts
+
+Here is a high level description of the app.
+
+When a user opens the app they are presented a view that allows them to log in to the app. It also shows the current weather in Charlotte.
+After a user logs in they will see a list of accounts they have entered with accountName, username and password.
+A user can add a new account, edit an account or delete an account.
+
+That is all this app does.
+
+Here are more specific requirements.
+
+The app is composed of three views. 
+	1.) Login view
+	2.) Accounts list view
+	3.) Add / Edit account view
+	
+Each view will have a view controller and view model associated with it, except for the Accounts List View. The view controller should contain UI elements and the view model should contain any logic needed.	
+	
+	Here are requirements for each view.
+	
+/* Login View */ 
+	Two text fields:
+		userIDTextField
+		passwordTextField
+	Four buttons:
+		createLoginButton
+    	loginButton
+   		deleteLoginButton
+    	useTouchIDButton
+    Four labels:
+    	cityLabel
+    	weatherIconLabel
+    	descriptionLabel
+    	currentTempLabel
+    	
+	If the user has not setup login credentials then display a "Create Login".
+	The "Create Login" button should be disabled by default.
+	The "Create Login" button should become enabled when each text field has at least one character entered in it.
+	If the user has already created login credentials then a "Login" button should be displayed in place of the "Create Login" button.
+	The "Login" button should be disabled by default".
+	The "Login" button should become enabled when each text field has at least one character entered in it.
+	In addition to the "Login" or "Create Login" button the app should also display a "Use Touch ID" button. This should be displayed whether login credentials have been created or not.
+	If login credentials have already been created display a "Delete Login" button.
+	If the "Create Login" button is selected then save the login credentials.
+		- The username is saved to NSUserDefaults
+		- The password is saved to the Keychain
+		- A boolean, userIDExists,  is set in NSUserDefaults to hold whether login credentials have been created.
+	If the "Login" button is selected the values entered are checked against the values retrieved from NSUserDefault and the Keychain.
+	If the "Use Touch ID" button is selected the user has the chance to user touch ID, this uses the built in iOS functionality.
+	If the user selects "Delete Login": 
+		- The username is deleted from NSUserDefaults
+		- The password is deleted from the Keychain
+		- The userIDExists bool is set to false in NSUserDefaults
+	If the login credentials entered match the ones saved the login is successful and the user is presented the Accounts list view.
+	passwordTextField should use secure text entry
+	cityLabel will display the city name, in this case Charlotte since it will be hard coded in.
+	mainWeatherLabel will display an emoji of the current weather
+	descriptionLabel will display text of the current weather
+	currentTempLabel will display the current temperature
+
+/* Accounts List View */
+	TableView:
+		Custom TableViewCell
+			accountNameLabel
+    		accountUsernameLabel
+    		accountPasswordLabel
+    Embedded in a Navigation controller
+    'Add' button in top right portion of Navigation Bar
+    'Add' button takes the user to the Add/Edit view in add mode
+    TableView should be populated with accounts from Core Data
+    TableView should use an NSFetchResultsController to handle the updating of the TableView
+    Selecting on a row takes the user to the Add/Edit view in edit mode
+    Swiping from right to left on a row displays the delete button and allows the user to delete an account
+    prepareForSegue() should set the bool var in the Add/Edit view to tru or false. True for new account, false for editing an existing account
+
+/* Add / Edit View */
+	Three text fields:
+		accountNameTextField
+    	accountUserIdTextField
+   		accountPasswordTextField
+   	One button:
+   		saveAccountButton
+   	View controller should include a var to tell if it is add or edit mode	
+   		var saveActionType = true
+   	If the view is presented from selecting on a row in the AccountsListTableView then saveActionType will have been set to false
+   	If user came from AccountsListTableView by selecting a row the text fields should be prepopulated with the account info
