@@ -25,7 +25,7 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 <ul>
 	<li>Xcode
 <ul>
-	<li><span style="color: #ff0000;">Fast Track</span> -  Chapter 2 from the "Excerpt from eBook" doc</li>
+	<li><a href="https://github.com/kefbytes/Swift_Crash_Course/">Fast Track -  Chapter 2 from the "Excerpt from eBook" doc</a></li>
 	<li><a href="http://codewithchris.com/xcode-tutorial/">Code With Chris - Getting Started Tutorial</a></li>
 	<li><a href="https://developer.apple.com/videos/play/wwdc2015-406/">WWDC - UI Testing in Xcode</a></li>
 	<li><a href="https://developer.apple.com/videos/play/wwdc2015-104/">WWDC - What's new in Xcode</a></li>
@@ -39,7 +39,7 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 </li>
 	<li>Interface Builder
 <ul>
-	<li><span style="color: #ff0000;">Fast Track</span> -Chapters 3 &amp; 4 from the "Excerpt from eBook" doc</li>
+	<li><a href="https://github.com/kefbytes/Swift_Crash_Course/">Fast Track -Chapters 3 &amp; 4 from the "Excerpt from eBook" doc</a></li>
 	<li><a href="https://www.hackingwithswift.com/read/1/4/introducing-interface-builder">Hacking With Swift - Introducing Interface Builder</a></li>
 	<li><a href="https://developer.apple.com/videos/play/wwdc2015-215/">WWDC - What's new in Storyboard</a></li>
 </ul>
@@ -50,7 +50,7 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 <ul>
 	<li>vars &amp; lets
 <ul>
-	<li><span style="color: #ff0000;">Fast Track</span> - Variables.playground</li>
+	<li><a href="https://github.com/kefbytes/Swift_Crash_Course/">Fast Track - Variables.playground</a></li>
 	<li><a href="https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309">Apple Language Guide</a></li>
 	<li><a href="http://code.tutsplus.com/tutorials/swift-from-scratch-variables-and-constants--cms-22828">tutsplus Swift from Scratch, Variables and Constants</a></li>
 	<li><a href="http://www.apeth.com/swiftBook/ch03.html">Apeth - Variables and properties</a></li>
@@ -58,13 +58,13 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 </li>
 	<li>types
 <ul>
-	<li><span style="color: #ff0000;">Fast Track</span> - Types.playground</li>
+	<li><a href="https://github.com/kefbytes/Swift_Crash_Course/">Fast Track - Types.playground</a></li>
 	<li><a href="https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html#//apple_ref/doc/uid/TP40014097-CH8-ID105">Apple Language Guide</a></li>
 </ul>
 </li>
 	<li>properties
 <ul>
-	<li><span style="color: #ff0000;">Fast Track</span> - Properties.playground</li>
+	<li><a href="https://github.com/kefbytes/Swift_Crash_Course/">Fast Track - Properties.playground</a></li>
 	<li><a href="https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Properties.html#//apple_ref/doc/uid/TP40014097-CH14-ID254">Apple Language Guide</a></li>
 	<li><a href="http://natashatherobot.com/swift-computed-properties/">Natasha The Robot - Computed Properties</a></li>
 	<li><a href="http://www.apeth.com/swiftBook/ch03.html">Apeth - Variables and Properties</a></li>
@@ -77,7 +77,7 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 <ul>
 	<li>Optionals
 <ul>
-	<li><span style="color: #ff0000;">Fast Track</span> - Optionals.playground</li>
+	<li><a href="https://github.com/kefbytes/Swift_Crash_Course/">Fast Track - Optionals.playground</a></li>
 	<li><a href="https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309">Apple Language Guide</a></li>
 	<li><a href="http://www.touch-code-magazine.com/swift-optionals-use-let/">Touch Code Magazine</a></li>
 	<li><a href="http://www.appcoda.com/beginners-guide-optionals-swift/">AppCoda Beginners Guide</a></li>
@@ -86,7 +86,7 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 </li>
 	<li>Control Flow
 <ul>
-	<li><span style="color: #ff0000;">Fast Track</span> - Control Flow.playground</li>
+	<li><a href="https://github.com/kefbytes/Swift_Crash_Course/">Fast Track - Control Flow.playground</a></li>
 	<li><a href="https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/ControlFlow.html#//apple_ref/doc/uid/TP40014097-CH9-ID120">Apple Language Guide</a></li>
 	<li><a href="http://natashatherobot.com/swift-2-pattern-matching-with-if-case/">Natasha The Robot - Pattern Matching with if case</a></li>
 	<li><a href="https://www.hackingwithswift.com/read/0/10/switch-case">Hacking with Swift - Switch / Case</a></li>
@@ -100,7 +100,7 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 <ul>
 	<li>Closures
 <ul>
-	<li><span style="color: #ff0000;">Fast Track</span> - Closures.playground</li>
+	<li><a href="https://github.com/kefbytes/Swift_Crash_Course/">Fast Track - Closures.playground</a></li>
 	<li><a href="https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Closures.html#//apple_ref/doc/uid/TP40014097-CH11-ID94">Apple Language Guide</a></li>
 	<li><a href="http://code.tutsplus.com/tutorials/swift-from-scratch-closures--cms-23138">Tuts Plus</a></li>
 	<li><a href="https://www.hackingwithswift.com/read/0/21/closures">Hacking With Swift</a></li>
@@ -108,7 +108,7 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 </li>
 	<li>Functions
 <ul>
-	<li><span style="color: #ff0000;">Fast Track</span> - Functions.playground</li>
+	<li><a href="https://github.com/kefbytes/Swift_Crash_Course/">Fast Track - Functions.playground</a></li>
 	<li><a href="https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158">Apple Language Guide</a></li>
 	<li><a href="http://www.raywenderlich.com/82599/swift-functional-programming-tutorial">Ray Wunderlich</a></li>
 	<li><a href="https://www.hackingwithswift.com/read/0/11/functions">Hacking with Swift</a></li>
@@ -121,7 +121,7 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 <ul>
 	<li>Structs &amp; Classes
 <ul>
-	<li><span style="color: #ff0000;">Fast Track</span> - Classes and Structs.playground</li>
+	<li><a href="https://github.com/kefbytes/Swift_Crash_Course/">Fast Track - Classes and Structs.playground</a></li>
 	<li><a href="https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID82">Apple Language Guide</a></li>
 	<li><a href="http://stackoverflow.com/questions/24232799/why-choose-struct-over-class">StackOverflow</a></li>
 	<li><a href="https://www.objc.io/issues/16-swift/swift-classes-vs-structs/">objc.io</a></li>
@@ -130,7 +130,7 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 </li>
 	<li>Enums
 <ul>
-	<li><span style="color: #ff0000;">Fast Track</span> - Enums.playground</li>
+	<li><a href="https://github.com/kefbytes/Swift_Crash_Course/">Fast Track - Enums.playground</a></li>
 	<li><a href="https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-ID145">Apple Language Guide</a></li>
 	<li><a href="http://cutting.io/posts/the-power-of-swift-enums/">cutting io</a></li>
 	<li><a href="http://natashatherobot.com/swift-enums-tableviews/">Natasha - Enums with Table</a></li>
@@ -146,7 +146,7 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 <ul>
 	<li>Protocols
 <ul>
-	<li><span style="color: #ff0000;">Fast Track</span> - Protocols and Delegates.playground</li>
+	<li><a href="https://github.com/kefbytes/Swift_Crash_Course/">Fast Track - Protocols and Delegates.playground</a></li>
 	<li><a href="https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-ID145">Apple Language Guide</a></li>
 	<li>Stanford Lecture #6:</li>
 	<li><a href="http://natashatherobot.com/swift-2-0-protocol-oriented-mvvm/">Natasha Protocol Oriented MVVM</a></li>
@@ -156,7 +156,7 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 </li>
 	<li>Extensions
 <ul>
-	<li><span style="color: #ff0000;">Fast Track</span> - Extensions.playground</li>
+	<li><a href="https://github.com/kefbytes/Swift_Crash_Course/">Fast Track - Extensions.playground</a></li>
 	<li><a href="https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-ID145">Apple Language Guide</a></li>
 	<li><a href="http://natashatherobot.com/swift-how-to-name-your-extensions/">Natasha - How to name your extensions</a></li>
 	<li><a href="https://www.hackingwithswift.com/read/24/2/creating-a-swift-extension">Hacking with Swift - Creating an extension</a></li>
@@ -167,7 +167,7 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 </li>
 	<li>Error Handling
 <ul>
-	<li><span style="color: #ff0000;">Fast Track</span> - ErrorHandling.playground</li>
+	<li><a href="https://github.com/kefbytes/Swift_Crash_Course/">Fast Track - ErrorHandling.playground</a></li>
 	<li><a href="https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/ErrorHandling.html#//apple_ref/doc/uid/TP40014097-CH42-ID508">Apple Language Guide</a></li>
 	<li><a href="http://natashatherobot.com/swift-2-error-handling/">Natasha - TestDriving Error Handling</a></li>
 	<li><a href="http://natashatherobot.com/swift-guard-better-than-if/">Natasha - Why guard is better than if</a></li>
@@ -176,7 +176,7 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 </li>
 	<li>Using Swift with Objective C
 <ul>
-	<li><a href="http://www.kefbytes.com/mixing-swift-from-objective-c/"><span style="color: #ff0000;">Fast Track</span> - KefBytes Blog Post</a></li>
+	<li><a href="http://www.kefbytes.com/mixing-swift-from-objective-c/"> Fast Track - KefBytes Blog Post</a></li>
 	<li>Stanford Lecture #5:</li>
 	<li><a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216-CH2-ID0">Apple - using Swift with Cocoa and Objective C</a></li>
 	<li><a href="http://stackoverflow.com/questions/24002369/how-to-call-objective-c-code-from-swift">StackOverflow</a></li>
