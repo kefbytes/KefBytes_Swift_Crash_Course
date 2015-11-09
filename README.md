@@ -9,7 +9,7 @@ A second approach might be to take your time and dig deep into each topic by r
 
 Just do whatever works best for you and have fun with it.
 
-The playgrounds and eBook excerpt can be downloaded right here <a href="https://github.com/kefbytes/Swift_Crash_Course">https://github.com/kefbytes/Swift_Crash_Course</a>. The eBook excerpt uses ObjC, but the Xcode and Interface stuff will help you get up to speed with those pieces. I would recommend just downloading the full zip to your machine.
+The playgrounds and eBook excerpt can be downloaded right here <a href="https://github.com/kefbytes/Swift_Crash_Course">https://github.com/kefbytes/Swift_Crash_Course</a>. The eBook excerpt uses ObjC, but the Xcode and Interface stuff will help you get up to speed with those pieces. I would recommend downloading the full zip to your machine.
 
 The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "developing iOS 8 apps with Swift", the course is CS93P.
 
