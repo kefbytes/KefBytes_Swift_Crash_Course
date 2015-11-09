@@ -207,6 +207,8 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 			<li>Parsing JSON objects</li>
 		</ul>
 		</li>
+		<li><a href="https://github.com/kefbytes/Swift_Crash_Course/">App Requirements - SwiftCrashCourseApp_Requirements.txt</a></li>
+		<li><a href="https://github.com/kefbytes/Swift_Crash_Course/">Steps to build app - SwiftCrashCourseApp_Build_Steps.txt</a></li>
 	</ul>
 	</li>
 </ul>
