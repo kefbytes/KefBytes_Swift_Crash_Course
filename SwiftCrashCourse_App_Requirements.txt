@@ -1,4 +1,4 @@
-/* SwiftCrashCourseApp Requirements */
+SwiftCrashCourse App Requirements
 
 
 The task is to build an app that does two simple things.
@@ -24,7 +24,7 @@ Each view will have a view controller and view model associated with it, except 
 	
 	Here are requirements for each view.
 	
-/* Login View */ 
+Login View  
 	Two text fields:
 		userIDTextField
 		passwordTextField
@@ -64,7 +64,7 @@ Each view will have a view controller and view model associated with it, except 
 	descriptionLabel will display text of the current weather
 	currentTempLabel will display the current temperature
 
-/* Accounts List View */
+Accounts List View 
 	TableView:
 		Custom TableViewCell
 			accountNameLabel
@@ -79,7 +79,7 @@ Each view will have a view controller and view model associated with it, except 
     Swiping from right to left on a row displays the delete button and allows the user to delete an account
     prepareForSegue() should set the bool var in the Add/Edit view to tru or false. True for new account, false for editing an existing account
 
-/* Add / Edit View */
+Add/Edit View 
 	Three text fields:
 		accountNameTextField
     	accountUserIdTextField
