@@ -187,7 +187,9 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 <ul>
 	<li>Build App
 	<ul>
-		<li>Functionality to implement
+		<li><a href="https://github.com/kefbytes/Swift_Crash_Course/">App Requirements - SwiftCrashCourseApp_Requirements.txt</a></li>
+		<li><a href="https://github.com/kefbytes/Swift_Crash_Course/">Steps to build app - SwiftCrashCourseApp_Build_Steps.txt</a></li>
+		<li>Functionality you'll be implenting
 		<ul>
 			<li>CocoaPods</li>
 			<li>Keychain Access</li>
@@ -207,8 +209,6 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 			<li>Parsing JSON objects</li>
 		</ul>
 		</li>
-		<li><a href="https://github.com/kefbytes/Swift_Crash_Course/">App Requirements - SwiftCrashCourseApp_Requirements.txt</a></li>
-		<li><a href="https://github.com/kefbytes/Swift_Crash_Course/">Steps to build app - SwiftCrashCourseApp_Build_Steps.txt</a></li>
 	</ul>
 	</li>
 </ul>
