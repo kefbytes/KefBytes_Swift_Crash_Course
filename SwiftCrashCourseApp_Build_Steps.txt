@@ -1,5 +1,7 @@
 Steps For Building the App
 
+This is just a suggested list of steps to create the app.
+
 1.) Create Project
 
 2.) Create Layout in Interface Builder
