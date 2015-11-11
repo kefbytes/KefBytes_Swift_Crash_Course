@@ -10,7 +10,7 @@ import UIKit
 
 Swift is a language that Apple has been working on for years. All the changes to Objective C over the last few years have been with Swift in mind.
 
-Swift is similar to C and Objective C, but there is need for sperate header and implementation files.
+Swift is similar to C and Objective C, but there is no need for sperate header and implementation files.
 
 Swift was designed to make code safer and clearer in intent. It is a type safe language, meaning if something in your code is expecting a string, you cannot pass it an int.
 
@@ -43,7 +43,7 @@ A beta verion 7.1 beta 2 is available as well.
 /*:
 ## Playgrounds
 
-Playgrounds are awesome. Youy are looking at a playground right now. With playgrounds you can run code and see the output without the need to create and compile a full app.
+Playgrounds are awesome. You are looking at a playground right now. With playgrounds you can run code and see the output without the need to create and compile a full app.
 
 Playgrounds are great learning tools as you can add markdown like what you are reading right now and combine it with code that runs and shows you the output like below.
 

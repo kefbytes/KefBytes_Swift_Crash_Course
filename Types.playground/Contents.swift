@@ -519,7 +519,6 @@ Access elements in the dictionary with the key inside square brackets
 
 
 
-// Continue here 10/14
 /*:
 You can create a Dictionary literal without specifying the types of the key and value.
 
