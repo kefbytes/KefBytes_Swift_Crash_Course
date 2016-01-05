@@ -1,0 +1,61 @@
+/* Steps for Swift Crash Course Function Exercise */
+Kent Franks
+11/20/15
+
+1.) Create a function named hello that takes no parameters and returns nothing.
+	# This function should print out "Hello, World"
+2.) Change the hello function to take one parameter of type String "name"
+	# change the out put to say "hello \(name)"
+3.) Change the hello function to take a second parameter of type Int "numberOfTimes"
+	# the out put should lopp and say hellp the number of times we passed Int
+4.) Change the hello function to add default values for the parameters
+5.) Change the hello function to add external names for the parameters
+6.) Create a new function named welcome, it should take one parameter of type String that is a variadic parameter "people"
+	# this function should loop through the parameter and output the elements
+7.) Change the welcome function to return a value which is the full string of params 
+8.) Change the welcome function to return a tuple. 
+	# the tuple should be the number of elements and a string of the elements
+9.) Set the returned value of the welcome function to a let
+	# reference each element of the tuple via index
+	# reference each element by name
+10.) Create a function named welcomeTo
+	# function should take two parameters of type String 
+		- personName name: String
+		- toLocation location: String
+	# function should return a String
+	# function should create a greeting with the name and location
+		- "Welcome to (location), (name)"
+	# function should return the greeting
+11.) call the welcomeTo function assigning the returned greeting to a let
+12.) Create a let which has a value of the welcomeTo function
+	# let ourWelcome = welcomeTo
+13.) call the welcomeTo function using the let
+	# ourWelcome("Hannah", "Pinehurst")
+	* you can also set the function to a var
+14.) Create a function named greetingFrom 
+	# function should take parameter
+		- location: String
+	# function should return a function
+		- -> (String) -> String
+	# function should include an internal function named welcomeTo
+		# function should take one parameter of type string "name"
+		# function should return a String
+		# returned String should be Welcome to (location), (name)
+	# function should return the internal function
+15.) Call the greetingFrom function in two ways
+	# let charlotte = greetingFrom("Charlotte")
+		charlotte("Hannah")
+	# greetingFrom("Kiawa")("Hannah")
+16.) Create a function named welcomeFrom
+	# function should take a String named name	
+		- personNamed name: String
+	# function should take a function named greeting
+		- withMessage greeting: (String) -> String
+	# function should return a String
+		- return the result of greeting function
+		- greeting(name)
+17.) call the welcomeFrom function passing in a name and the greetingFrom function	
+	
+			
+// up to line 242 The map function
+ 
