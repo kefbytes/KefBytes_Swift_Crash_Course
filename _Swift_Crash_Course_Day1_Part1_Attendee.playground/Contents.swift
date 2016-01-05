@@ -42,19 +42,20 @@ We will be using Playgrounds extensively in this course.
 
 // Create a var that's type is inferred.
 
-var var1 = "Hannah"
+
 
 // Create a var that has no value but's type is inferred.
 
-//var var2
+
 
 // Create a var that is set to nil
 
-//var var3 = nil
+
 
 // print our first var to the console
 
-print(var1)
+
+
 /*:
 ## Variables
 
@@ -94,7 +95,7 @@ let password2 = "pass1234"          // in this case it will imply that the type 
 
 // Create a var that has a value that is String
 
-var var4 = "Hannah"
+
 
 /*:
 Did you implicitly set it to be a String or let Swift infer its type?
@@ -102,15 +103,14 @@ Did you implicitly set it to be a String or let Swift infer its type?
 
 // Now change the value of the var you created.
 
-var4 = "Noah"
+
 
 // Create a let of type Int
 
-let var5 = 7
+
 
 // Now change the value of the let.
 
-//var5 = 11
 
 
 /*:
@@ -126,9 +126,7 @@ vars and lets must have a value at the time a structure is created. What this me
 struct someStructOrClass {
     
     // Try creating a var of type String here that has no initial value. In this case implicitly define the type
-    
-    var var6: String?
-    
+        
     init() {
 
     }
@@ -166,11 +164,9 @@ var firstName = "Henrieta"
 
 // create a var using a symbol in the name
 
-var 🎱 = "Eight Ball"
 
 // create a var that has a name made up of two names seperated by a space
 
-var eight_ball = "Eight Ball"
 
 // What happened?
 
@@ -182,13 +178,9 @@ Once you’ve declared a constant or variable of a certain type, you can not red
 
 // create a var of type string
 
-var var7 = "Cardinal"
 
 // assign an Int to the var you just created
 
-var7 = "Solutions"
-
-//var7 = 007
 
 // What happened?
 
@@ -225,32 +217,29 @@ var lastDictionaryExample = ["Can": "Swift", "Infer": "The", "Type": "?"]
 
 // Create two vars of type String
 
-var var8 = "Cardinal"
-var var9 = "Solutions"
+
 
 /*:
 You can combine strings with the + sign.
 */
 // Combine the two Strings you created into a new String
 
-var var10 = var8 + var9
+
 
 // Create a var thats value is an emptry String
 
-var var11 = ""
+
 
 /*:
 You can check if a String is empty with the isEmpty method
 */
 // Check if the String you just created is empty.
 
-var11.isEmpty
+
 
 // now assign a value to your String that is an actual String and not empty
 
-var11 = "Swift"
 
-var11.isEmpty
 
 // Here is a function that takes a String and adds a String to it and then returns a String
 func changeAString(var ourString: String) -> String {
@@ -260,11 +249,11 @@ func changeAString(var ourString: String) -> String {
 
 // Pass your String to the function  - example changeAString(yourStringHere)
 
-changeAString(var11)
+
 
 // Check the value of your String by just typing in the name below
 
-var11
+
 
 /*:
 What did we see from the example above?
@@ -284,15 +273,11 @@ An easy way to include values in Strings is to write the value in parentheses pr
 
 // Create some var of type String with the value "Solutions".
 
-var var12 = "Solutions"
+
 
 // Now create a var with a value of "Ideas Solutions People", use String Interpolation.
 
-var var13 = "Ideas \(var12) People"
 
-print("Ideas \(var12) People")
-
-var var14 = "\(var8) \(var9)"
 
 /*:
 To get the length of a String you count the characters in the String
@@ -302,7 +287,6 @@ To get the length of a String you count the characters in the String
 
 // Find the length of the String you created above
 
-var13.characters.count
 
 
 /*:
@@ -311,12 +295,11 @@ You compare Strings with ==
 
 //Create two Strings
 
-var var15 = "Cardinal"
-var var16 = "cardinal"
+
 
 // Compare the two Strings to see if they are equal (use ==)
 
-var15 == var16
+
 
 /*:
 You can loop through the characters in a String using for in
@@ -327,9 +310,7 @@ You can loop through the characters in a String using for in
 // Loop throught the characters of one of your Strings
 
 
-for character in var13.characters {
-    print(character)
-}
+
 /*:
 **Array**
 
@@ -352,7 +333,7 @@ You create an empty Array by putting the type inside the square brackets.
 
 // Create an empty array of Strings
 
-var var17 = [String]()
+
 
 /*:
 You can append something to array with the append method
@@ -362,7 +343,7 @@ You can append something to array with the append method
 
 // Append a String or two to your empty array
 
-var17.append("Hannah")
+
 
 /*:
 You can also append something by using the += operator
@@ -370,7 +351,7 @@ You can also append something by using the += operator
 
 // Append another String to your array using the += operator
 
-var17 += "Noah"
+
 
 /*:
 You can change one of the Strings in your Array by accessing it with the index inside square brackets
