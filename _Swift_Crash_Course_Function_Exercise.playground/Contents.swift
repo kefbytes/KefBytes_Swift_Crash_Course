@@ -11,21 +11,11 @@ let digits = ["zero": 0, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "
 
 // create a function named add() that takes an array of Strings as its argument. It sums the Int values of the entries.
 
-func add(numbers: [String]) -> Int {
-    var sum = 0
-    for number in numbers {
-        // getting the value for the key we passed in
-        if let convertedInt = digits[number] {
-            sum += convertedInt
-        }
-    }
-    return sum
-}
 
 // call the add function passing in an array of the english words for a couple numbers example:["one", "three"]
 
 
-/* more functions */
+/*: more functions */
 
 var numbers = [5,2,8,3,9,4]
 
@@ -38,7 +28,7 @@ var numbers = [5,2,8,3,9,4]
 // do so again but assign the result back to numbers
 
 
-/* variadic parameters */
+/*: variadic parameters */
 
 // create the same array but set the parameter array to be a var
 
@@ -46,14 +36,9 @@ var numbers = [5,2,8,3,9,4]
 // Just a second array we can use
 var numbers2 = [6,2,8,7,9,1]
 
-/* inout parameters */
+/*: inout parameters */
 
 // create the same function but set the parameter array to be if type inout
-func func3(inout array: [Int]) {
-    for i in 0..<array.count {
-        array[i] *= 100
-    }
-}
 
 // call previous func with our number2 array then check array values
 
@@ -68,7 +53,7 @@ func times100(number: Int) -> Int {
 numbers = [5,2,8,3,9,4]
 
 
-/* function as the second parameter */
+/*: function as the second parameter */
 
 // create the same func but add a second param that is a closure: modificationOf:(Int) -> Int
 // in the for loop we want to call that closure with the current loops value
@@ -85,14 +70,14 @@ func func5(inout array: [Int]) {
 func5(&numbers)
 
 
-/* closure */
+/*: closure */
 
 // try calling our latest func passing in a trainling closure
 
 // Can be shortened
 
 
-/* generics */
+/*: generics */
 
 // But what if we wanted to do the same thing with doubles and not ints?
 var doubles = [5.0, 2.0, 8.0, 3.0, 9.0, 4.0]
@@ -108,7 +93,7 @@ var doubles = [5.0, 2.0, 8.0, 3.0, 9.0, 4.0]
 // call the function twice, once with the numbers and once with the doubles array
 
 
-/* Mutating functions 
+/*: Mutating functions
 
 The type of a Swift array is written in full as Array<Element>, where Element is the type of values the array is allowed to store.
 */
