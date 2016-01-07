@@ -38,23 +38,55 @@ Song(nameIn: "Name of Song", artistIn: "Name of Artist")
 
 // Create and array that holds a type of AnyObject and has three Song objects
 
+let anyObject: [AnyObject] = [
+    Song(nameIn: "Anodyne", artistIn: "Uncle Tupleo"),
+    Song(nameIn: "Ain't So Lonely", artistIn: "Lucerne"),
+    Song(nameIn: "Hard Times", artistIn: "Gob Irone")
+]
 
+let anyObjects  = [AnyObject](arrayLiteral:
+    Song(nameIn: "Anodyne", artistIn: "Uncle Tupleo"),
+    Song(nameIn: "Ain't So Lonely", artistIn: "Lucerne"),
+    Song(nameIn: "Hard Times", artistIn: "Gob Irone"))
+
+var song1 = Song(nameIn: "Anodyne", artistIn: "Uncle Tupleo")
+var song2 = Song(nameIn: "Ain't So Lonely", artistIn: "Lucerne")
+var song3 = Song(nameIn: "Hard Times", artistIn: "Gob Irone")
+
+let songs: [AnyObject] = [song1, song2, song3]
 
 // Iterate over the Array and set each item to be of type Song, we can do so because we know the Array holds Songs
 
+for object in songs {
+    var song = object as! Song
+    print("song.name = \(song.name)")
+}
 
 
 // A shorter version
 
-
+for song in songs as! [Song] {
+    print("song.name = \(song.name)")
+}
 
 // Create an Array with type Any. It should hold a String, an Int and a Song
 
-
+let anyArray: [Any] = ["Hannah", 7, Song(nameIn: "Moonshiner", artistIn: "Uncle Tupleo")]
 
 // While iterating over the Array we use a switch case to find the type of each item.
 
-
+for anyItem in anyArray {
+    switch anyItem {
+    case is String:
+        print("Found a String")
+    case is Int:
+        print("Found a Int")
+    case is Song:
+        print("Found a Song")
+    default:
+        print("Found something unknown")
+    }
+}
 
 /*:
 **Tuple**
@@ -77,7 +109,7 @@ You can create a var that is a Tuple by seperating the values by a comma, naming
 
 // Create a Tuple that names it's values
 
-
+let someTuple = (artistName: "Uncle Tupleo", songName: "New Madrid")
 
 /*:
 You can access the values of the Tuples by number
@@ -87,7 +119,7 @@ You can access the values of the Tuples by number
 
 // Access the second value of the Tuple you created and assign it to a new var
 
-
+someTuple.0
 
 /*:
 You can also access thr value of a Tuple by name, if you assigned names when creating it.
@@ -97,6 +129,7 @@ You can also access thr value of a Tuple by name, if you assigned names when cre
 
 // Access a value of your Tuple by name
 
+someTuple.artistName
 
 
 /*:
@@ -115,7 +148,7 @@ typealias funcDef = (String, String) -> String
 
 // Create a typealias
 
-
+//typlealias AudioSample = UInt16
 
 /*:
 Once you define a type alias, you can use the alias anywhere you might use the original name.
@@ -133,12 +166,14 @@ So in this case  (String, Int) -> Void, a function would take a String and an In
 
 // create a typealias that defines a function definition
 
-
+typealias response = (String, Int) -> Void
 
 // Now we can use that anywhere a function definition can be used
 
-
-
+//func someFunction(paramName:String, responseMessage:response) -> String {
+//    var response = responseMessage(paramName, 7)
+//    return response
+//}
 /*:
 ### Properties
 
@@ -255,7 +290,14 @@ do some computations
 */
 
 // Add a computed property to your struct. The computation could be as simple as adding 1 to an Int or "The" to a String.
+var compVar1 = "Hannah"
 
+var compVar:String {
+get { return compVar1 + "Cardinal"}
+set {print("Setting compVar")}
+}
+
+var comp2 = compVar
 
 
 /*:
@@ -341,7 +383,10 @@ do something
 
 // Add a property observer to one of your stored properties in the struct
 
+var var2:String =  "Noah" {
+willSet { print("Hannah") }
 
+}
 
 
 /*:

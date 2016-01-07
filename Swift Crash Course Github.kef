@@ -1,0 +1,47 @@
+https://github.com/kefbytes/Swift_Crash_Course
+
+_Swift_Crash_Course_Day1 ....
+
+
+/* Use of typealias */
+MyLowesNetworkManager
+
+	typealias NetworkResponseHandler = (result: NetworkResponse) -> Void
+	
+	func requestValidationForEmail(emailAddress: String, responseHandler: NetworkResponseHandler) throws {
+        let pathParams = [AppValues.ServicePathParameters.Email: emailAddress]
+        let urlString = try lookupServiceURLForOperationId("UserStatus", version: .Version1, methodType: .GET, pathParameters: pathParams)
+        let header = [AppValues.AuthHeaderKeys.Authorization: AppValues.AuthHeaderValues.AuthorizationValue]
+
+        manager.request(.GET, urlString, parameters: nil, encoding: .JSON, headers: header)
+            .validate()
+            .responseJSON { (result) -> Void in
+            log.debug("\(result.description)")
+
+            let response: NetworkResponse = networkResponseForResponse(result, responseType: nil)
+            responseHandler(result: response)
+        }
+    }
+
+
+CoreDataManager
+
+	typealias CoreDataManagerCompletionHandler = (result: Bool, failureError: NSError?) -> Void
+
+	func deleteObject(object: NSManagedObject, completion: CoreDataManagerCompletionHandler) {
+        mainManagedObjectContext?.deleteObject(object)
+        saveWithCompletionHandler(completion)
+    }
+
+/* Use of static */
+
+KeyChainUtils
+
+	static func getGuestToken() -> String? {
+        do {
+            let guestToken = try LWSKeychainUtils.readObjectForKey(AppValues.KeyChainKeyNames.GuestToken) as? String
+            return guestToken
+        } catch {
+            return nil
+        }
+    }

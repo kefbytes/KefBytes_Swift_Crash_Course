@@ -41,19 +41,19 @@ We will be using Playgrounds extensively in this course.
 */
 
 // Create a var that's type is inferred.
-
+var var1 = "Hannah"
 
 
 // Create a var that has no value but's type is inferred.
-
+//var var2
 
 
 // Create a var that is set to nil
-
+//var var3 = nil
 
 
 // print our first var to the console
-
+print("Hannah")
 
 
 /*:
@@ -95,7 +95,7 @@ let password2 = "pass1234"          // in this case it will imply that the type 
 
 // Create a var that has a value that is String
 
-
+var string1 = "Hannah"
 
 /*:
 Did you implicitly set it to be a String or let Swift infer its type?
@@ -103,15 +103,15 @@ Did you implicitly set it to be a String or let Swift infer its type?
 
 // Now change the value of the var you created.
 
-
+string1 = "Noah"
 
 // Create a let of type Int
 
-
+var int1 = 7
 
 // Now change the value of the let.
 
-
+int1 = 8
 
 /*:
 What happened when you tried to change the value?
@@ -126,9 +126,11 @@ vars and lets must have a value at the time a structure is created. What this me
 struct someStructOrClass {
     
     // Try creating a var of type String here that has no initial value. In this case implicitly define the type
-        
-    init() {
-
+    
+    var var1:String?
+    
+    init(name:String) {
+//        var1 = name
     }
 }
 
@@ -164,9 +166,11 @@ var firstName = "Henrieta"
 
 // create a var using a symbol in the name
 
+var 🍗 = "Turkey Leg"
 
 // create a var that has a name made up of two names seperated by a space
 
+var turkeyleg = "Turkey Leg"
 
 // What happened?
 
@@ -178,9 +182,15 @@ Once you’ve declared a constant or variable of a certain type, you can not red
 
 // create a var of type string
 
+var var2:String
 
 // assign an Int to the var you just created
 
+//var2 = 7
+
+var var3 = "8"
+
+//var3 = 8
 
 // What happened?
 
@@ -217,25 +227,27 @@ var lastDictionaryExample = ["Can": "Swift", "Infer": "The", "Type": "?"]
 
 // Create two vars of type String
 
-
+var var4 = "Hannah"
+var var5 = "Noah"
 
 /*:
 You can combine strings with the + sign.
 */
 // Combine the two Strings you created into a new String
 
-
+var4 + var5
+var var6 = var4 + var5
 
 // Create a var thats value is an emptry String
 
-
+var var7 = "Cardinal"
 
 /*:
 You can check if a String is empty with the isEmpty method
 */
 // Check if the String you just created is empty.
 
-
+var7.isEmpty
 
 // now assign a value to your String that is an actual String and not empty
 
@@ -249,10 +261,11 @@ func changeAString(var ourString: String) -> String {
 
 // Pass your String to the function  - example changeAString(yourStringHere)
 
-
+changeAString(var7)
 
 // Check the value of your String by just typing in the name below
 
+var7
 
 
 /*:
@@ -273,11 +286,13 @@ An easy way to include values in Strings is to write the value in parentheses pr
 
 // Create some var of type String with the value "Solutions".
 
-
+var solution = "Solutions"
 
 // Now create a var with a value of "Ideas Solutions People", use String Interpolation.
 
+var phrase = "Ideas \(solution) Interpolation"
 
+print("Ideas \(solution) Interpolation")
 
 /*:
 To get the length of a String you count the characters in the String
@@ -287,7 +302,7 @@ To get the length of a String you count the characters in the String
 
 // Find the length of the String you created above
 
-
+solution.characters.count
 
 /*:
 You compare Strings with ==
@@ -295,11 +310,13 @@ You compare Strings with ==
 
 //Create two Strings
 
+var var10 = "Hannah"
+var var11 = "Hannah"
 
 
 // Compare the two Strings to see if they are equal (use ==)
 
-
+var10 == var11
 
 /*:
 You can loop through the characters in a String using for in
@@ -309,7 +326,9 @@ You can loop through the characters in a String using for in
 
 // Loop throught the characters of one of your Strings
 
-
+for character in solution.characters {
+    print("ugug =  \(character)")
+}
 
 /*:
 **Array**
@@ -333,7 +352,7 @@ You create an empty Array by putting the type inside the square brackets.
 
 // Create an empty array of Strings
 
-
+var array1 = [String]()
 
 /*:
 You can append something to array with the append method
@@ -343,14 +362,15 @@ You can append something to array with the append method
 
 // Append a String or two to your empty array
 
-
+array1.append("Hannah")
+//array1.append(7)
 
 /*:
 You can also append something by using the += operator
 */
 
 // Append another String to your array using the += operator
-
+array1 += ["Noah"]
 
 
 /*:
@@ -361,7 +381,7 @@ You can change one of the Strings in your Array by accessing it with the index i
 
 // Change the value of the second item in your Array
 
-
+array1[0] = "rosie"
 
 /*:
 You can insert an element into the Array at a specific index
@@ -371,7 +391,7 @@ You can insert an element into the Array at a specific index
 
 // Insert a new String into your array at index 1
 
-
+array1.insert("Hannah", atIndex: 1)
 
 /*:
 You can create an Array literal by assigning values to the  Array during declaration. When doing so you don't need to specify the type, Swift can infer it.
@@ -381,7 +401,7 @@ You can create an Array literal by assigning values to the  Array during declara
 
 // Create an Array literal of Ints
 
-
+let array2 = ["Hannah", "Noah", "Rosie"]
 
 /*:
 You get the size of an Array by using count
@@ -391,7 +411,7 @@ You get the size of an Array by using count
 
 // Get the size of your Array literal yo created.
 
-
+array2.count
 
 /*:
 Get the first element in an Array with first.
@@ -401,7 +421,8 @@ Get the first element in an Array with first.
 
 // get the first element of your Array
 
-
+array2.first
+var name = array2.first
 
 /*:
 You can get the last element of an Array with last.
@@ -411,7 +432,7 @@ You can get the last element of an Array with last.
 
 // Get the last element in your Array
 
-
+array2.last
 
 /*:
 You can check if your Array us empty with isEmpty
@@ -421,7 +442,7 @@ You can check if your Array us empty with isEmpty
 
 // Check if your Array is empty
 
-
+array2.isEmpty
 
 /*:
 Check to see if an Array contains some thing with contains
@@ -431,7 +452,7 @@ Check to see if an Array contains some thing with contains
 
 // Check if your Array contains 99
 
-
+array2.contains("Cardinal")
 
 /*:
 You can loop through your array with for in
@@ -441,7 +462,9 @@ You can loop through your array with for in
 
 // Lopp through your array and print the elements
 
-
+for tempElem in array2 {
+    print("tempElem = \(tempElem)")
+}
 
 /*:
 You can enumerate through an array getting the index and value of each element
@@ -451,11 +474,13 @@ You can enumerate through an array getting the index and value of each element
 
 // enumerate through your array
 
-
+for (index, value) in array2.enumerate() {
+    print("Index = \(index), value = \(value)")
+}
 
 // Create another array of the same type as the one you already created
 
-
+var array3 = ["Red", "Green", "Blue"]
 
 /*:
 You can combine arrays with the + operator
@@ -465,11 +490,11 @@ You can combine arrays with the + operator
 
 // Combine your two Int Arrays to create a third Array
 
-
+var array4 = array2 + array3
 
 // Try changing the value of the second element
 
-
+//array4.[2] = "Solution"
 
 // What happened?
 
@@ -483,15 +508,15 @@ We can get around this by declaring an Array of type 'Any'
 
 // Create an array of type Any
 
-
+var array10 = [Any]()
 
 // Append an Int to the Array
 
-
+array10.append(7)
 
 // Append a String to the Array
 
-
+array10.append("Hannah")
 
 /*:
 **Sets**
@@ -510,7 +535,7 @@ You create an empty set by putting the type within less than and greater than sy
 
 // Create an empty set of Strings
 
-
+var aSet = Set<String>()
 
 /*:
 When creating Set literals you don't need to specify the type
@@ -520,6 +545,7 @@ When creating Set literals you don't need to specify the type
 
 // Create a literal set of Strings
 
+var colors:Set = ["red", "green", "blue"]
 
 
 /*:
@@ -534,15 +560,16 @@ Just like Arrays you can check for isEmpty, insert and contains. With Sets you d
 
 // Check if your Set is empty
 
+colors.isEmpty
 
 
 // Insert a String into your Set
 
-
+colors.insert("White")
 
 // Check if your Set contains a specific String
 
-
+colors.contains("blue")
 
 // Loop though your Set (just like you did in Array)
 
@@ -590,7 +617,7 @@ You create an empty Dictionary by adding the key and value types in square brack
 
 // Create and empty Dictionary that has a key of type Int and value of type String
 
-
+var aDict = [Int: String]()
 
 /*:
 You add elements to the Dictionary by accessing the key and assigning the value.
@@ -602,7 +629,7 @@ In the above statement the key is 1 and the value is Red
 
 // Add a few key values to the Dictionary
 
-
+aDict[0] = "red"
 
 /*:
 Access elements in the dictionary with the key inside square brackets
@@ -612,7 +639,7 @@ Access elements in the dictionary with the key inside square brackets
 
 // Create a new var by accessing the key
 
-
+var someColor = aDict[0]
 
 /*:
 You can create a Dictionary literal without specifying the types of the key and value.
@@ -626,7 +653,7 @@ If you do want to specify the types it goes before the = sign
 
 // Create a dictionary literal using Strings for the keys and values.
 
-
+var paintColors = ["Kitchen": "Alabastor", "Dining Room": "Sailboat", "trim": "Pure White", "Noah's Room": "BlueGrass"]
 
 /*:
 The same methods are available to Dictionary that were available to the other collection types.
@@ -634,19 +661,19 @@ The same methods are available to Dictionary that were available to the other co
 
 // Get the count of elements in your Dictionary
 
-
+paintColors.count
 
 // Get the first element of the Dictionary
 
-
+paintColors.first
 
 // Check if your Dictionary is empty
 
-
+paintColors.isEmpty
 
 // Get the value for the key "trim" and assign it to a new var
 
-
+paintColors["trim"]
 
 /*:
 To add an element put the key in square brackets and assign a value
@@ -656,7 +683,9 @@ To add an element put the key in square brackets and assign a value
 
 // Add a new element to the dictionary
 
-
+paintColors["Hannah Second Color"] = "Corral"
+paintColors["Hannah Second Color"] = "Red"
+paintColors
 
 /*:
 To update an element in a Dictionary you use updateValue
@@ -666,5 +695,7 @@ To update an element in a Dictionary you use updateValue
 
 // Update one of the elements in the Dictionary
 
+paintColors.updateValue("Red", forKey: "Hannah Second Color")
 
+paintColors.popFirst()
 
