@@ -93,7 +93,8 @@ var doubles = [5.0, 2.0, 8.0, 3.0, 9.0, 4.0]
 // call the function twice, once with the numbers and once with the doubles array
 
 
-/*: Mutating functions
+/*: 
+Mutating functions
 
 The type of a Swift array is written in full as Array<Element>, where Element is the type of values the array is allowed to store.
 */
