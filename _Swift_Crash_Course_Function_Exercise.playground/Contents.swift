@@ -1,7 +1,7 @@
 import UIKit
 
 /*:
-Below is the beginning of making the map function
+Fun with functions
 */
 
 // Here's a dictionary of numbers
