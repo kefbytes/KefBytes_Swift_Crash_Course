@@ -38,7 +38,15 @@ You define a class with the class keyword followed by the class name. The class 
 `}`
 */
 
-// Create a class named MyClass
+// Create a class named MyClass that has one func named greetings which takes no parameter and returns the string "Hello"
+
+class MyClass {
+    
+    func greetings() -> String {
+        return "Hello"
+    }
+    
+}
 
 
 /*:
@@ -49,9 +57,17 @@ Subclasses include their superclass name after their class name, separated by a 
 `}`
 */
 
-// Create a class that is a subclass of OurSuperClass
+// Create a class named MySubClass that is a subclass of MyClass
 
-
+class MySubClass: MyClass {
+    
+    let name = "Hannah"
+    
+    override func greetings() -> String {
+        return "\(super.greetings()) \(name)"
+    }
+    
+}
 
 /*:
 A property declaration in a class is written the same way as a constant or variable declaration, except that it is in the context of a class. Likewise, method and function declarations are written the same way.
@@ -63,9 +79,7 @@ var someProperty = "Our Property"
 `}`
 */
 
-// add a property declaration to the class you just created.
-
-
+// add a constant property named "name" and assign a value to it in MySubClass
 
 
 
@@ -77,9 +91,7 @@ Methods on a subclass that override the superclass’s implementation are marked
 `}`
 */
 
-// Add the function someFunction that returns a String to your class and override it since it resides in OurSuperClass.
-
-
+// Add the function greetings to MySubClass and override it since it resides in MyClass. This method should call the super class version of greetings and then add the constant property name to it.
 
 
 
@@ -89,9 +101,9 @@ You create an instance of a class by putting parentheses after the class name.
 `var someVarClassName = SomeClass()`
 */
 
-// Create an instance of your class
+// Create an instance of MySubClass
 
-
+var mySubClass = MySubClass()
 
 /*:
 You can use dot syntax to access the properties and methods of the instance.
@@ -99,9 +111,10 @@ You can use dot syntax to access the properties and methods of the instance.
 `someClass.someFunction()`
 */
 
-// call someFunction from the class instance you created.
+// call greetings from the class instance you created.
 
-
+mySubClass.greetings()
+mySubClass.name
 
 /*:
 **struct**
@@ -121,27 +134,23 @@ A struct is created with the struct keyword.
 
 // Create a struct named MyStruct.
 
+struct MyStruct {
+    
+    var name = "Hannah"
+    
+}
 
-
-
-
-// Add a property to your struct.
-
-
-
-
+// Add a var property to your struct.
 
 // Create an instance of your struct that is a var.
 
-
-
-
+var myStruct = MyStruct()
+myStruct.name
 
 // Use your instance of the struct to change the value of the property.
 
-
-
-
+myStruct.name = "Noah"
+myStruct.name
 
 
 /*:
@@ -150,15 +159,11 @@ If you create an instance of a structure and assign that instance to a constant,
 
 // Create an instance of your struct that is a let
 
-
-
-
+let myStructAgain = MyStruct()
 
 // Try changing the property of the struct using the instance that is a let.
 
-
-
-
+//myStructAgain.name = "Rosie"
 
 /*:
 What happened?
@@ -167,9 +172,6 @@ This behavior is due to structures being value types. When an instance of a valu
 
 The same is not true for classes, which are reference types. If you assign an instance of a reference type to a constant, you can still change that instance’s variable properties.
 */
-
-
-
 
 /*:
 ## Protocols
@@ -192,11 +194,11 @@ Define a protocol with the "protocol" keyword.
 
 */
 
-// Define a basic protocol with no var or methods yet.
+// Define a basic protocol named MyProtocol with no var or methods yet.
 
-
-
-
+protocol MyProtocol {
+    
+}
 
 /*:
 To conform to a protocol you add it after the type's name, sperated by a colon.
@@ -206,11 +208,11 @@ To conform to a protocol you add it after the type's name, sperated by a colon.
 `}`
 */
 
-// Create a structure that conforms to youf protocol.
+// Create a structure that conforms to your protocol.
 
-
-
-
+struct OurStruct: MyProtocol {
+    
+}
 
 /*:
 If class has a superclass list it before any protocols seperated by a comma.
@@ -220,11 +222,11 @@ If class has a superclass list it before any protocols seperated by a comma.
 `}`
 */
 
-// Change the structure above to extend 'SomeSuperClass'.
+// Create a class name OurClass with super class MyClass and conforms to MyProtocol
 
-
-
-
+class OurClass:MyClass, MyProtocol {
+    
+}
 
 /*:
 A protocol can require any conforming type to provide an instance property or type property with a particular name and type. The protocol also specifies whether each property must be gettable or gettable and settable.
@@ -239,11 +241,14 @@ var anotherVar:Int {get set}
 
 */
 
-// Add a couple properties to your protocol defined above.
+// Create a new Protocol named OurProtocol that defines a couple properties, one for name which is only gettable, and one for age which is gettable or settable
 
-
-
-
+//protocol OurProtocol {
+//    
+//    var name: String{get}
+//    var age: Int{get set}
+//    
+//}
 
 /*:
 You can create type property requirements with the "static" keyword.
@@ -259,9 +264,12 @@ var anotherVar:Int {get set}
 
 // Change one of your properties to be a type property.
 
-
-
-
+//protocol OurProtocol {
+//
+//    static var name: String{get}
+//    var age: Int{get set}
+//
+//}
 
 /*:
 **Method Requirements**
@@ -283,7 +291,13 @@ func someFunc()
 // Add a method to your protocol.
 
 
-
+//protocol OurProtocol {
+//    
+//    static var name: String{get}
+//    var age: Int{get set}
+//    
+//    func greeting()
+//}
 /*:
 As with type property requirements, you always prefix type method requirements with the static keyword when they are defined in a protocol.
 
@@ -302,9 +316,14 @@ static func someTypeFunc()
 
 // Add a type method to your protocol
 
-
-
-
+//protocol OurProtocol {
+//    
+//    static var name: String{get}
+//    var age: Int{get set}
+//    
+//    func greeting()
+//    static func sayGoodbye()
+//}
 /*:
 **Protocol Initializers**
 
@@ -325,9 +344,18 @@ static func someTypeFunc()
 `}`
 */
 
-// Add an initializer to your protocol.
+// Move your protocol down here and add an initializer to your protocol.
 
-
+protocol OurProtocol {
+    
+    init(age: Int)
+    
+    static var name: String{get}
+    var age: Int{get set}
+    
+    func greeting()
+    static func sayGoodbye()
+}
 
 /*:
 **Delegation**
@@ -337,13 +365,44 @@ Delegation is a design pattern that enables a class or structure to hand off (or
 The delegation design pattern is implemented by defining a protocol that encapsulates the delegated responsibilities.
 */
 
+// Let's create a new class named Person that conforms to OurProtocol
 
+//class Person: OurProtocol {
+//    
+//}
+
+// You'll notice the error, what this is telling us is we need to implement the elements to conform to the protocol
+
+class Person: OurProtocol {
+
+    static var name: String{
+        get {
+            return self.name
+        }
+    }
+    var age: Int{
+        get{
+            return self.age
+        }
+        set{
+            print("Setting age")        }
+    }
+
+    required init(age: Int) {
+        self.age = age
+    }
+    
+    func greeting() {
+        print("Hello \(age) year old")
+    }
+    static func sayGoodbye() {
+        print("Goodbye!")
+    }
+
+}
 /*:
 You can extend an existing type to adopt and conform to a new protocol, even if you do not have access to the source code for the existing type.
 */
-
-
-
 
 /*:
 ## Extensions
@@ -354,7 +413,6 @@ You can even extend types for which you do not have the source code to. For exam
 
 Extensions can add new functionality to a type, but they cannot override existing functionality.
 
-We have a couple things that are going to help us in this section. The first is avery simple struct named Greetings, the other is a very simple protocol named GreetingProtocol. These are both located in our Sources folder and available to us right now.
 */
 
 /*:
@@ -364,17 +422,33 @@ You can create an extension with the extension keyword.
 
 `}`
 */
+// Let's start by creating a String
 
+let hannah = "hannah"
 
-// Extent the struct Greetings.
+// Now let's get the number of characters in the String
 
-print("Hello")
+hannah.characters.count
 
-for var i = 0; i < 5; i++ {
-    print(i)
+//What if we could instead just do something like String.length
+
+// We can with the use of Extensions
+
+// Let's create a String Extension. In our extension we'll create a var named length and use a getter to calculate the length.
+
+extension String {
+    
+    var length: Int {
+        get{
+            return self.characters.count
+        }
+    }
+    
 }
 
+// Now we can get the length of the string
 
+hannah.length
 
 /*:
 An extension can adapt one or more protocols.
@@ -386,14 +460,32 @@ You adapt a protocol in an extension just as you would in a struct or class.
 `}`
 */
 
-// Have the extension greated above adapt to the GreetingProtocol protocol.
+// Create a Protocol named Caps
 
+protocol Cap {
+    
+    var cap: String {get}
 
+}
 
+// Now let's extend String again and have it conform to Caps protocol, then we'll have to implement the caps var
 
+extension String: Cap {
+    
+    var cap: String {
+        get {
+            return self.capitalizedString
+        }
+    }
+
+}
+
+// Now we can call caps on our hannah string
+
+let capHannah = hannah.cap
 
 /*:
-Extenions can add computed properties. The syntax is just like a computed property in a normal struct or class.
+Extensions can add computed properties. The syntax is just like a computed property in a normal struct or class.
 
 Extensions can also initializers. The syntax is just like an initializer in a struct or class.
 
@@ -401,12 +493,6 @@ Extensions can add new instance methods and type methods to existing types.
 
 Extensions can add new subscripts to an existing type.
 */
-
-
-
-
-
-
 
 /*:
 **Protocol Extensions**
@@ -423,18 +509,48 @@ You extend a protocol just like you would a structure.
 
 `}`
 */
+// First let's define a protocol named RandomNumberGenerator
+
+protocol RandomNumberGenerator {
+    func random() -> Double
+}
+
+// now define a struct named battleResult that comforms to RandomNumberGenerator
+struct BattleResult: RandomNumberGenerator {
+    
+    var damage:Double {
+        get{
+            return random()
+        }
+        set{
+            damage += random()
+        }
+    }
+    
+    func random() -> Double {
+        return drand48()
+    }
+    
+}
+
+// Now let's extend our RandomNumberGenerator protocol to include a func that returns a random Bool
+
+extension RandomNumberGenerator {
+    func randomBool() -> Bool {
+        return random() > 0.5
+    }
+}
+
+// Now we can create an instance of BattleResult and call randomBool on it
+let battleResult = BattleResult()
+let directHit = battleResult.randomBool()
+
+// And of course we're still able to call damage as well
+let battleDamage = battleResult.damage
 
 /*:
-When you define a protocol extension, you can specify constraints that conforming types must satisfy before the methods and properties of the extension are available. You write these constraints after the name of the protocol you’re extending using a where clause.
-
 You can use protocol extensions to provide a default implementation to any method or property requirement of that protocol. If a conforming type provides its own implementation of a required method or property, that implementation will be used instead of the one provided by the extension.
 */
-
-
-
-
-
-
 
 /*:
 ## Error Handling
@@ -445,27 +561,81 @@ In Swift, errors are represented by values of types that conform to the ErrorTyp
 
 enums are particularly useful when defining error types.
 
-`enum FileReadingError: ErrotType {`
+*/
+// Let's create an enum that throws errors associaed with reading a file
 
-case FileDoesNotExist(fileName: String)
+enum FileReadingError: ErrorType {
+    
+    case FileDoesNotExist(fileName: String)
+    
+    case FileIsWrongFormat
+    
+    case FileIsCorrupt
+    
+}
 
-case FileIsWrongFormat
+/*:
+Throwing an error lets you indicate that something unexpected happened and the normal flow of execution can’t continue. You use a throw statement to throw an error.
+*/
 
-case FileIsCorrupt
+// Create a struct that will attempt to read a file, and without doing anything else let's throw a FileDoesNotExist error
+
+struct FileReader {
+    
+    func readFile() {
+//        throw FileReadingError.FileDoesNotExist(fileName: "SomeFileToRead.xml")
+    }
+    
+}
+
+// What does the error say? We need to declare that our func can throw an error
+
+/*:
+**Propagating Errors**
+
+If a function, method or initializer can throw an error, you include the throws keyword in the definition before the return type.
+
+`func someFunc() throws -> String {`
+
+return "SomeString"
 
 `}`
+
+A throwing function propagates errors that are thrown inside of it to the scope from which it’s called.
 */
 
+// Let's try creating that struct again, but this time define the function with the throws keyword
+
+struct FileReader2 {
+
+    func readFile() throws {
+        throw FileReadingError.FileDoesNotExist(fileName: "SomeFileToRead.xml")
+    }
+
+}
+
+// Better, but honestly we're not just going to automatically throw an error. We only want to throw it if the error actually occurs
+
+
+// Redo our struct one more time using a guard statement to determine when to throw the error
+
+struct FileReader4 {
+    
+    func readFile() throws {
+        guard readFileSuccessfully() else {
+            throw FileReadingError.FileDoesNotExist(fileName: "SomeFileToRead.xml")
+        }
+    }
+    
+    func readFileSuccessfully() -> Bool {
+        let battleResult = BattleResult()
+        return battleResult.randomBool()
+    }
+    
+}
 
 /*:
-You use a throw statement to throw an error.
-
-`throw FileReadingError.FileDoewNotExist(fileName: "SomeFileToRead.xml")`
-*/
-
-
-/*:
-When an error is thrown, some surrounding piece of code must be responsible for handling the error—for example, by correcting the problem, trying an alternative approach, or informing the user of the failure.
+When an error is thrown, some surrounding piece of code must be responsible for handling the error. For example, by correcting the problem, trying an alternative approach, or informing the user of the failure.
 
 There are four ways to handle errors in Swift.
 
@@ -477,29 +647,9 @@ There are four ways to handle errors in Swift.
 
 - assert that the error will not occur
 
+
 Write the try keyword—or the try? or try! variation—before a piece of code that calls a function, method, or initializer that can throw an error.
 */
-
-
-/*:
-**Propagating Errors**
-
-If a function, method or initializer can throw an error, you include the throws keyword in the defition before the return type.
-
-`func someFunc() throws -> String {`
-
-return "SomeString"
-
-`}`
-
-A throwing function propagates errors that are thrown inside of it to the scope from which it’s called.
-*/
-
-// Define a method or function that can throw an error.
-
-
-
-
 
 /*:
 **do-catch**
@@ -521,18 +671,51 @@ You use a do-catch statement to handle errors by running a block of code. If an 
 `}`
 */
 
+// Rewrite our struct to use a do-catch
+struct FileReader5 {
+    
+    func readFile() throws {
+        do {
+            try readFileSuccessfully()
+            print("Do Something")
+        } catch {
+            print("Here we might do something like log the error and maybe the stack trace")
+        }
+    }
+    
+    func readFileSuccessfully() throws -> Bool {
+        let battleResult = BattleResult()
+        return battleResult.randomBool()
+    }
+    
+}
+
 
 /*:
 **Converting Errors to Optional Values**
 
 You use try? to handle an error by converting it to an optional value. If an error is thrown while evaluating the try? expression, the value of the expression is nil.
 
-Suppose you are calling the function yo called earlier that throws an error.
+Suppose you are calling the function you called earlier that throws an error.
 
-`var someVar = try? someFunctionThatThrowsAnError()`
+`var someVar = try? readFileSuccessfully()`
 
-If someFunctionThatThrowsAnError() throws an error, the value of someVar is nil otherwise it gets value returned by the function.
+If readFileSuccessfully() throws an error, the value of someVar is nil otherwise it gets value returned by the function.
 */
+
+// It would look something like this
+struct FileReader6 {
+    
+    func readFile() throws {
+        _ = try? readFileSuccessfully()
+    }
+    
+    func readFileSuccessfully() throws -> Bool {
+        let battleResult = BattleResult()
+        return battleResult.randomBool()
+    }
+    
+}
 
 
 /*:
@@ -547,7 +730,7 @@ Sometimes you know a throwing function or method won’t, in fact, throw an erro
 /*:
 **defer**
 
-You use a defer statement to execute a set of statements just before code execution leaves the current block of code. This code always gets executed whether we are exiiting the scope because of an error or a return statement or whatever.
+You use a defer statement to execute a set of statements just before code execution leaves the current block of code. This code always gets executed whether we are exiting the scope because of an error or a return statement or whatever.
 
 `func someFunc() throws {`
 
@@ -571,3 +754,24 @@ while let someVar = try trySomeFunction() {
 
 `}`
 */
+
+struct FileReader7 {
+    
+    func readFile() throws {
+        defer {
+            cleanUp()
+        }
+        _ = try? readFileSuccessfully()
+        
+    }
+    
+    func readFileSuccessfully() throws -> Bool {
+        let battleResult = BattleResult()
+        return battleResult.randomBool()
+    }
+    
+    func cleanUp() {
+        print("log any errors,reset any values or free up any resources")
+    }
+}
+
