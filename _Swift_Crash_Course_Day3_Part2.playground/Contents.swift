@@ -74,3 +74,37 @@ struct Stack<Element> {
 
 // You can extend a generic type
 
+
+/*: 
+**Mixing Swift and Objective C**
+
+To import a set of Objective-C files in the same app target as your Swift code, you rely on an Objective-C bridging header to expose those files to Swift. Xcode offers to create this header file when you add a Swift file to an existing Objective-C app, or an Objective-C file to an existing Swift app.
+
+To import Objective-C code into Swift from the same target
+
+In your Objective-C bridging header file, import every Objective-C header you want to expose to Swift. For example:
+    
+#import "XYZCustomCell.h"
+#import "XYZCustomView.h"
+#import "XYZCustomViewController.h"
+
+In Build Settings, in Swift Compiler - Code Generation, make sure the Objective-C Bridging Header build setting under has a path to the bridging header file.
+The path should be relative to your project, similar to the way your Info.plist path is specified in Build Settings. In most cases, you should not need to modify this setting.
+
+When you import Swift code into Objective-C, you rely on an Xcode-generated header file to expose those files to Objective-C. This automatically generated file is an Objective-C header that declares the Swift interfaces in your target. It can be thought of as an umbrella header for your Swift code. The name of this header is your product module name followed by adding "-Swift.h". 
+
+Once you import your Swift code into Objective-C, use regular Objective-C syntax for working with Swift classes.
+*/
+
+/*: 
+When I wanted to add a swift class and access it from an Obj C class.
+
+I had to add this import to any class that wanted to access the swift class
+
+#import "LOWES-swift.h"
+
+Make sure the new swift file has the Target Membership set in the File Inspector.
+
+Items marked as private in Swift will not be available in Obj-C
+
+*/
