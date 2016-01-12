@@ -10,7 +10,7 @@ This is just a suggested list of steps to create the app.
 
 4.) Add CocoaPods
 	
-	- This should add the KefKeychain wrapper pod used during login and the SwiftyJSON pod used later.
+	- This should add the KefKeychainWrapper pod(https://github.com/kefbytes/KeychainWrapper) used during login and the SwiftyJSON pod(google it) used later.
 
 5.) Implement Login Functionality
 
@@ -47,9 +47,9 @@ This is just a suggested list of steps to create the app.
 	
 	You may need to create your own APPID for Open Weather if the above doesn't work. Try it in something like Postman to find out.
 
-	You will need to add this to the info.plist file - click the plus sign.
+	You will need to add this to the info.plist file(click the plus sign).
 		App Transport Security Settings as a Dictionary
-	And then add this to the dictionary (it will probably do so for you when you click the plus sign.
+	And then add this to the dictionary (it will probably do so for you when you click the plus sign).
 		Allow Arbitrary Loads
 	Set the value to YES.
 

@@ -22,7 +22,7 @@ The app is composed of three views.
 	
 Each view will have a view controller and view model associated with it, except for the Accounts List View. The view controller should contain UI elements and the view model should contain any logic needed.	
 	
-	Here are requirements for each view.
+Here are requirements for each view.
 	
 Login View  
 	Two text fields:
