@@ -12,9 +12,20 @@ Swift’s Array and Dictionary types are both generic collections.
 
 // Create a function that swaps two Ints
 
-
+func swapTwoInt(inout a: Int, inout b: Int) {
+    let temporaryA = a
+    a = b
+    b = temporaryA
+}
 
 // test it out
+
+var firstInt = 7
+var secondInt = 11
+
+swapTwoInt(&firstInt, b: &secondInt)
+firstInt
+secondInt
 
 
 
@@ -27,13 +38,27 @@ Swift’s Array and Dictionary types are both generic collections.
 
 // Then we will use that type parameter as a placeholder for the type of our parameters
 
+func swapTwoValues<T>(inout a: T, inout b: T) {
+    let temporaryA = a
+    a = b
+    b = temporaryA
+    
+}
+
+swapTwoValues(&firstInt, b: &secondInt)
+
 
 
 // Now we can swap two of anything
 
 // Let's try it with Strings
 
+var child1 = "Hannah"
+var child2 = "Noah"
 
+swapTwoValues(&child1, b: &child2)
+child1
+child2
 
 // In this example the type of the two parameters must be the same
 
@@ -74,7 +99,9 @@ struct Stack<Element> {
 
 // You can extend a generic type
 
-
+extension Stack {
+    
+}
 /*: 
 **Mixing Swift and Objective C**
 
