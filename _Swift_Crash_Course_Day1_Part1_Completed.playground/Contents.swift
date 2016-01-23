@@ -82,7 +82,6 @@ var artist: String = "Uncle Tupelo"
 /*:
 Did you implicitly set it to be a String or let Swift infer its type?
 */
-
 // Now change the value of the var you created.
 
 artist = "WhiskeyTown"
@@ -104,8 +103,6 @@ Swift helps you by giving you some way to fix the error, click the little red an
 /*:
 vars and lets must have a value at the time a structure is created. What this means is they either need a default value at the time of declaration or they must be assigned a value during initialization.
 */
-
-
 struct Song {
     
     // Try creating a var named songTitle here that has no initial value. In this case implicitly define the type to be of String.
@@ -140,7 +137,6 @@ var 😈 = "Here's a happy little var, probably not real useful though"
 var firstName = "Henrieta"
 
 */
-
 // create a let using a symbol in the name. You can find the symbols under Edit > Emoji & Symbols
 
 let 🎼 = "C"
@@ -156,7 +152,6 @@ let key_signature = "C"
 /*:
 Once you’ve declared a constant or variable of a certain type, you can not redeclare it again with the same name, or change it to store values of a different type. Nor can you change a constant into a variable or a variable into a constant.
 */
-
 // create a let named instrument of type string and assign it a value of some type of musical instrument
 
 let instrument = "Guitar"
@@ -188,7 +183,6 @@ let instrument = "Guitar"
 
 _Strings_
 */
-
 var stringExample:String = "Here's a string"
 let anotherStringExample = "Swift can infer the type"
 //: _Arrays_
@@ -209,7 +203,6 @@ var anotherDictionaryExample = ["Can": "Swift", "Infer": "The", "Type": "?"]
 /*:
 **Strings**
 */
-
 // Create a let named album that is type String and give it a value
 
 //let album: String = "Anodyne"
@@ -242,7 +235,6 @@ genre.isEmpty
 /*:
 Passing Strings around
 */
-
 // Here is a function that takes a String and adds a String to it and then returns a String
 func addGreeting(var name: String) -> String {
     name += ", welcome to Swift"
@@ -281,7 +273,6 @@ It is also easy way to include values in Strings is to write the value in parent
 
 example: let someString = "\(string1), here's some more text \(string2)"
 */
-
 // Let's combine our songTitle and album Strings again into a let named single, but this time use String Interpolation
 
 let single = "\(songTitle), \(album)"
@@ -291,7 +282,6 @@ To get the length of a String you count the characters in the String
 
 `someStringVar.characters.count`
 */
-
 // Find the length of the single String you created above
 
 single.characters.count
@@ -299,7 +289,6 @@ single.characters.count
 /*:
 You compare Strings with ==
 */
-
 // Compare the songTitle and album Strings to see if they are equal
 
 songTitle == album
@@ -316,7 +305,6 @@ You can loop through the characters in a String using for in
 
 `for character in ourString.characters`
 */
-
 // Loop throught the characters of the let single
 
 for character in single.characters {
@@ -342,7 +330,6 @@ You create an empty Array by putting the type inside the square brackets.
 
 `var arrayOfStrings = [String]()`
 */
-
 // Create an empty array of Strings named songs
 
 var songs = [String]()
@@ -352,7 +339,6 @@ You can append something to array with the append method
 
 `someArray.append(someVar)`
 */
-
 // Append your songTitle let to the songs array
 
 songs.append(songTitle)
@@ -376,7 +362,6 @@ You can access one of elements in your array using the index inside square brack
 
 `someArray[index]`
 */
-
 // Change the value of the second item in your songs array by accessing it with it's index and assigning it a literal
 
 songs[1] = "Moonshiner"
@@ -386,7 +371,6 @@ You can insert an element into the Array at a specific index
 
 `someArray.insert(someVar, atIndex: index)`
 */
-
 // Insert the songName variable back into the songs array at index 1 (the second spot)
 
 songs.insert(songName, atIndex: 1)
@@ -395,7 +379,6 @@ You can create an Array literal by assigning values to the  Array during declara
 
 `let someArray = [var1, var2, var3, var4]`
 */
-
 // Create an Array literal of Ints named years a assign it some years
 
 let years = [1990, 1992, 1993, 1997]
@@ -404,7 +387,6 @@ You get the size of an Array by using count
 
 `someArray.count`
 */
-
 // Get the size of your years array using count
 
 years.count
@@ -414,7 +396,6 @@ Get the first element in an Array with first.
 
 `someArray.first`
 */
-
 // get the first element of your songs array
 
 songs.first
@@ -424,7 +405,6 @@ You can get the last element of an Array with last.
 
 `someArray.last`
 */
-
 // Get the last element in your songs array
 
 songs.last
@@ -434,7 +414,6 @@ You can check if your Array us empty with isEmpty
 
 `someArray.isEmpty`
 */
-
 // Check if your songs array is empty
 
 songs.isEmpty
@@ -444,7 +423,6 @@ Check to see if an Array contains some thing with contains
 
 `someArray.contains(someVar)`
 */
-
 // Check if your years array contains 1993
 
 years.contains(1993)
@@ -454,7 +432,6 @@ You can loop through your array with for in
 
 `for tempVar in someArray`
 */
-
 // Loop through your songs array and print the elements
 
 for song in songs {
@@ -466,13 +443,11 @@ You can enumerate through an array getting the index and value of each element
 
 `for (index, value) in someArray.enumerate()`
 */
-
 // enumerate through your songs array
 
 for (index, song) in songs.enumerate() {
     print("index = \(index), song = \(song)")
 }
-
 
 // Create another array named artists you can combine literal values along with you artist variable when creating it
 
@@ -483,7 +458,6 @@ You can combine arrays with the + operator
 
 `someArray + anotherArray`
 */
-
 // Combine your songs and artist arrays and assign to a new array named songsAndArtists of type let
 
 var songsAndArtists = songs + artists
@@ -502,7 +476,6 @@ We can get around this by declaring an Array of type 'Any'
 
 `var someArray = [Any]()`
 */
-
 // Create a mutable array named musicCollection of type Any. Remember in Swift the only difference between mutable and immutable is the declaration with either let or var. Use var to make the array mutable.
 
 var musicCollection = [Any]()
@@ -529,7 +502,6 @@ You create an empty set by putting the type within less than and greater than sy
 
 `var emptySetOfStrings = Set<String>()`
 */
-
 // Create an empty set of Strings named songSet
 
 var songSet = Set<String>()
@@ -540,7 +512,6 @@ When creating Set literals you don't need to specify the type
 
 `var setOfColors:Set = ["Red", "Green", "Blue"]`
 */
-
 // Create a literal set of Strings named artistSet
 
 let artistSet:Set = ["Whiskeytown", "Uncle Tupelo", "Jayhawks"]
@@ -554,7 +525,6 @@ Just like Arrays you can use isEmpty, insert and contains. With Sets you don't s
 
 `someSet.contains(someVar)`
 */
-
 // Check if your artistSet is empty
 
 artistSet.isEmpty
@@ -613,7 +583,6 @@ You create an empty Dictionary by adding the key and value types in square brack
 
 `var aDictionary = [Int: String]()`
 */
-
 // Create and empty Dictionary named mySongs that has a key of type String and value of type String
 
 var mySongs = [String: String]()
@@ -637,7 +606,6 @@ Access elements in the dictionary with the key inside square brackets
 
 `var someVar = aDictionary[1]`
 */
-
 // Create a new let named firstArtist by accessing the key of our mySongs Dictionary
 
 let firstArtist = mySongs[songs[0]]
@@ -662,7 +630,6 @@ If you do want to specify the types it goes before the = sign
 /*:
 The same methods are available to Dictionary that were available to the other collection types.
 */
-
 // Get the count of elements in your mySongs Dictionary
 
 mySongs.count
@@ -684,7 +651,6 @@ To update an element in a Dictionary you use updateValue
 
 `someDictionary.updateValue(value, forKey: key)`
 */
-
 // Update one of the elements in the mySongs Dictionary
 
 mySongs.updateValue("Bob Dylan", forKey: songKey)
