@@ -519,3 +519,26 @@ If that condition is not met, the code inside the else branch is executed. That 
 
 Using a guard statement for requirements improves the readability of your code, compared to doing the same check with an if statement. It lets you write the code that’s typically executed without wrapping it in an else block, and it lets you keep the code that handles a violated requirement next to the requirement.
 */
+
+
+// Example
+let successfulResponse:String? = "Success"
+
+if let response = successfulResponse {
+    print("response is good")
+} else {
+    print("no response handle the error")
+}
+
+// now the guard version
+enum ResponseError: ErrorType {
+    case NoResponse
+    case TimeOut
+}
+
+guard let response = successfulResponse else {
+    // the response was a failure so handle it
+    throw ResponseError.NoResponse
+}
+// proceed with the response
+
