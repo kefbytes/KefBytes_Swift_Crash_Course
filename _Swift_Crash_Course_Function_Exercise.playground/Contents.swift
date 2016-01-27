@@ -72,7 +72,7 @@ func5(&numbers)
 
 /*: closure */
 
-// try calling our latest func passing in a trainling closure
+// try calling our latest func passing in a trailing closure
 
 // Can be shortened
 
