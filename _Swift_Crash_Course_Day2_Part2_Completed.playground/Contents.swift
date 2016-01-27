@@ -35,29 +35,42 @@ If a function is not going to take any parameters you can omit those
 func hello() {
     print("Hello")
 }
-/*:
-A function can return multiple values with a tuple.
-*/
-// Create a function named getCredentials that returns a tuple of two Strings.
-func getCredentials(userName: String) -> (String, String) {
-    return("userName", "password")
+// Call the hello function
+hello()
+
+//Create the same hello function that takes one parameter, name, which is a String. The function should print out a greeting using the name parameter passed in.
+func hello(name: String) {
+    print("Hello, \(name)!")
 }
-/*:
-A function can also return an optional tuple.
-*/
-// Create a function named getUser that returns an optional tuple.
-func getEmployee(id: Int) -> (String, Int)? {
-    return("username", 007)
+// Call the new hello function passing in a name
+hello("my friend")
+
+//Create another hello function that takes two parameters, the same name one we just used and a second one named numberOfTimes which is an Int. The function should call the hello function that takes one parameter in a loop that runs the number of times as the Int parameter passed in.
+func hello(name: String, numberOfTimes: Int) {
+    for _ in 1 ... numberOfTimes {
+        hello(name)
+    }
 }
+// Call the newest hello function passing in a name and an Int.
+hello("Hannah", numberOfTimes: 7)
+
+//We ended up with the first basic hello function and then two overloaded versions
+
 /*:
-This is different than returning a Tuple of optionals
+You can set default values for parameters in your functions.
+
+Let's start a new version of a similar function. Start by creating a func named greeting that takes a single parameter, name, which is a String and has a default value of "World". This function is going to call our hello function which takes one parameter(name).
 */
-// Create a function named getEmployeeFromID that returns two optionals.
-func getEmployeeFromID(id: Int) -> (String?, Int?) {
-    return("username", 007)
+func greeting(name: String = "World") {
+    hello(name)
 }
+// Call our greeting function and don't pass it any value.
+greeting()
+// Try calling the same greeting function again, but this time pass in a name
+greeting("Noah")
+
 /*:
-Function parameters have both an external parameter name and a local parameter name. An external parameter name is used to label arguments passed to a function call. A local parameter name is used in the implementation of the function.
+Function parameters have both an external parameter name and a local parameter name. We use the external name when calling the function and passing in the arguments. A local parameter name is used within the implementation of the function.
 
 By default, the first parameter omits its external name, and the second and subsequent parameters use their local name as their external name. All parameters must have unique local names. Although it’s possible for multiple parameters to have the same external name, unique external names help make your code more readable.
 
@@ -65,17 +78,21 @@ You write an external parameter name before the local parameter name it supports
 
 If you provide an external parameter name for a parameter, that external name must always be used when you call the function.
 */
-// Create a function named getUser that has external names for it's parameters.
-func getUser(firstName first:String, lastName last:String) {
-    
+// Create a new version of greeting, giving the name parameter an external name of personWithName. Let's also add a second parameter, numberOfTimes which is an Int.
+func greeting(personWithName name: String, numberOfTimes: Int) {
+    for _ in 1 ... numberOfTimes {
+        hello(name)
+    }
 }
-/*:
-You can set default values for parameters in your functions.
-*/
-// Create a function named setActiveUser that sets a default value for a parameter named status.
-func setActiveUser(userName user: String, status: String = "Active") {
-    
-}
+// Now when we call the new greeting function we must use the external name for our String parameter.
+greeting(personWithName: "Tim Cook", numberOfTimes: 4)
+
+
+
+
+
+
+
 /*:
 **variadic parameters**
 
@@ -102,6 +119,7 @@ func calculateGrade(testScores:Int...) -> Int {
 
 // Call the calculateGrade function passing in some test scores and assign the result ot a var named grade
 var grade = calculateGrade(69, 98, 84, 77)
+
 /*:
 Function parameters are constants by default.
 
@@ -119,6 +137,67 @@ func calculateGradeWithXtraCredit(var grade: Int) -> Int {
 
 // test out the calculateGradeWithXtraCredit function by passing it a grade
 calculateGradeWithXtraCredit(83)
+
+/*:
+A function can return multiple values with a tuple.
+*/
+// Create a function named getCredentials that returns a tuple of two Strings with external names,userName and password.
+func getCredentials(userName: String) -> (userName:String, password:String) {
+    // we would of course make some call here to get the credentials
+    return("tCook", "pass1234")
+}
+// Call getCredentials assigning the returned tuple to a let named credentials
+let credentials = getCredentials("Tim Cook")
+
+/*:
+We can then reference the credntials by index or by their external name.
+*/
+// Reference the elements of credentials by index
+credentials.0
+credentials.1
+
+// Reference the elements by external name
+credentials.userName
+credentials.password
+
+/*:
+We also could have assigned the result to a tuple.
+*/
+// Call getCredentials again and assign the result to a tuple.
+let (userName, password) = getCredentials("Tim Cook")
+
+/*:
+Now we access the elements by name within the tuple
+*/
+userName
+password
+
+
+/*:
+A function can also return an optional tuple.
+*/
+// Create a function named getUser that returns an optional tuple.
+func getEmployee(id: Int) -> (String, Int)? {
+    return("username", 007)
+}
+/*:
+This is different than returning a Tuple of optionals
+*/
+// Create a function named getEmployeeFromID that returns two optionals.
+func getEmployeeFromID(id: Int) -> (String?, Int?) {
+    return("username", 007)
+}
+
+/*:
+functions can be assigned to constants or variables
+*/
+// Assign the getCredentials function to a let
+let userCredentials = getCredentials
+
+// Now we can use the constant to call the function
+userCredentials("Tim Cook")
+
+
 /*:
 **in-out parameters**
 
