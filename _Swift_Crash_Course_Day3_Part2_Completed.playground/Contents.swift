@@ -1,116 +1,455 @@
-import Foundation
+import UIKit
 
 /*:
-## Generics
+## Protocols
 
-Generic code enables you to write flexible, reusable functions and types that can work with any type, subject to requirements that you define. You can write code that avoids duplication and expresses its intent in a clear, abstracted manner. Much of the Swift standard library is built with generic code.
+A protocol defines a blueprint of methods, properties, and other requirements that suit a particular task or piece of functionality.
 
-Swift’s Array and Dictionary types are both generic collections.
+The protocol can then be adopted by a class, structure, or enumeration to provide an actual implementation of those requirements.
+
+Any type that satisfies the requirements of a protocol is said to conform to that protocol.
+
+You can use a protocol name just like any other named type—for example, to create a collection of objects that have different types but that all conform to a single protocol.
+
+You define a protocol with the "protocol" keyword.
+
+`protocol SomeProtocol {`
+
+`}`
+
 */
-// Create a function named swapTwoInts that takes two Ints and swaps their values, you'll have to mark these as inout parameters so that the change will occur outside our function as well
-func swapTwoInts(inout a: Int, inout b: Int) {
-    let temporaryA = a
-    a = b
-    b = temporaryA
-}
+// Many times you include the word delegate in the name of the Protocol. Create a Protocol named UserAccountDelegate
+//protocol UserAccountDelegate {
+//    var username: String? {get}
+//    var password: String? {get}
+//    static var active: Bool {get}
+//
+//    func setCredentials(username: String, password: String)
+//}
 
-// test it out by creating two Ints and passing them to our swapTwoInts function. Don't forget to preceed the arguments with an ampersand since they are inout parameters
-var firstInt = 7
-var secondInt = 11
-swapTwoInts(&firstInt, b: &secondInt)
-firstInt
-secondInt
 
 /*:
-Wouldn't it be better to have a function that swaps any two values of any type?
+A protocol can require any conforming type to provide an instance property or type property with a particular name and type. The protocol also specifies whether each property must be gettable or gettable and settable.
 
-Let's change our func to use generics.
-The first thing you need to do is define the function named swapTwoValues that uses a type parameter. You do this by placing some arbitrary name inside angled brackets. This goes before the parameters.
+`protocol SomeProtocol {`
 
-func swapTwoValues<T> ...
+var someVar:String {get}
 
-Then you use that type parameter as a placeholder for the type of the parameters
+var anotherVar:Int {get set}
+
+`}`
+
 */
-// create a function named swapTwoValues that uses a type parameter <T>. The body of the function is exactly the same as our swapTwoInts
-func swapTwoValues<T>(inout a: T, inout b: T) {
-    let temporaryA = a
-    a = b
-    b = temporaryA
+// Add two properties to the UserAccountDelegate, username and password, they should both optional strings. Designate each one to be only get.
+/*:
+You can create type property requirements with the "static" keyword.
+
+`protocol SomeProtocol {`
+
+static var someVar:String {get}
+
+var anotherVar:Int {get set}
+
+`}`
+*/
+// Add a static property named active which is a Bool, also only get.
+/*:
+**Method Requirements**
+Protocols can require specific instance methods and type methods to be implemented by conforming types.
+
+You declare method requirements just as with a normal func, but with no curly braces or body.
+
+`protocol SomeProtocol {`
+
+static var someVar:String {get}
+
+var anotherVar:Int {get set}
+
+func someFunc()
+
+`}`
+*/
+// Add a method named updatePassword to your protocol. It should have one String parameter, password. Remember not to include curly braces.
+/*:
+As with type property requirements, you always prefix type method requirements with the static keyword when they are defined in a protocol.
+
+`protocol SomeProtocol {`
+
+static var someVar:String {get}
+
+var anotherVar:Int {get set}
+
+func someFunc()
+
+static func someTypeFunc()
+
+`}`
+*/
+
+/*:
+**Protocol Initializers**
+
+Protocols can require specific initializers to be implemented by conforming types. You write these initializers as part of the protocol’s definition in exactly the same way as for normal initializers, but without curly braces or an initializer body:
+
+`protocol SomeProtocol {`
+
+init(someParam: Int)
+
+static var someVar:String {get}
+
+var anotherVar:Int {get set}
+
+func someFunc()
+
+static func someTypeFunc()
+
+`}`
+*/
+// Move your UserAccountProtocol down here and add an initializer to it. The init should set the username and password from the two parameters passed in.
+protocol UserAccountDelegate {
+    var username: String? {get set}
+    var password: String? {get set}
+    static var active: Bool {get set}
     
+    func updatePassword(password: String)
+    init(username: String, password: String)
 }
-// First let's try out our new swapTwoValues with our two ints (firstInt and secondInt)
-swapTwoValues(&firstInt, b: &secondInt)
-
-// But now we can swap two of anything, not just Ints
-
-// Let's try it with Strings. Create two Strings and pass them to our swapTwoValues function
-var child1 = "Hannah"
-var child2 = "Noah"
-swapTwoValues(&child1, b: &child2)
-child1
-child2
-
-/*:
-In this example the type of the two parameters must be the same
-
-The type will be determined when the function is called, and inferred using whatever is passed in
-
-In most cases, type parameters have descriptive names, such as Key and Value in Dictionary<Key, Value> and Element in Array<Element>, which tells the reader about the relationship between the type parameter and the generic type or function it’s used in. However, when there isn’t a meaningful relationship between them, it’s traditional to name them using single letters such as T, U, and V.
-*/
-
-// You can provide more than one type parameter by writing multiple type parameter names within the angle brackets, separated by commas.
 
 var test = "test"
 
 /*:
-In addition to generic functions, Swift enables you to define your own generic types. These are custom classes, structures, and enumerations that can work with any type, in a similar way to Array and Dictionary.
+To conform to a protocol you add it after the type's name, sperated by a colon.
+
+`struct SomeStruct:SomeProtocol {`
+
+`}`
+*/
+// Create a struct named Person that conforms to the UserAccountDelegate protocol. The Person struct must implement all the item in the UserAccountProtocol or it will give you an error.
+struct Person: UserAccountDelegate {
+    var username: String? {
+        get{
+            return self.username
+        } set {}
+    }
+    var password: String? {
+        get{
+            return self.password
+        } set {}
+    }
+    static var active: Bool {
+        get{
+        return self.active
+        } set {}
+    }
+    
+    init(username: String, password: String) {
+        self.password = password
+        self.username = username
+    }
+    
+    func updatePassword(password: String) {
+        
+    }
+    
+}
+
+var test2 = "test2"
+/*:
+If you are in a class and it has a superclass list the superclass before any protocols seperated by a comma.
+
+`class SomeClass: SomeSuperClass, SomeProtocol {`
+
+`}`
 */
 
-// Example:
-struct Stack<Element> {
-    var items = [Element]()
-    mutating func push(item: Element) {
-        items.append(item)
-    }
-    mutating func pop() -> Element {
-        return items.removeLast()
+/*:
+**Delegation**
+
+Delegation is a design pattern that enables a class or structure to hand off (or delegate) some of its responsibilities to an instance of another type.
+
+The delegation design pattern is implemented by defining a protocol that encapsulates the delegated responsibilities.
+*/
+// We've already done this we defined the UserAccountDelefate protocol and encapsulated the responsibilities and delegated the actual implementation to whoever conformed to the UserAccountProtocol, in this case the Person struct.
+/*:
+You can extend an existing type to adopt and conform to a new protocol, even if you do not have access to the source code for the existing type.
+*/
+
+/*:
+**Protocol Extensions**
+
+You can extend a protocol to implement some requirements or to implement additional functionality that conforming types can take advantage of. This allows you to define behavior on protocols themselves, rather than in each type’s individual conformance or in a global function.
+*/
+
+/*:
+You extend a protocol just like you would a structure.
+
+`extension SomeProtocol {`
+
+// implement something here
+
+`}`
+*/
+// First let's define a protocol named RandomNumberGenerator that includes a func named random that returns a Double
+protocol RandomNumberGenerator {
+    func random() -> Double
+}
+
+var test3 = "test3"
+
+// Now let's extend our RandomNumberGenerator protocol to include a func named randomBool it should call our random func and return true if the result of the random call is greated than 0.5
+extension RandomNumberGenerator {
+    func randomBool() -> Bool {
+        return random() > 0.5
     }
 }
 
-// mutating allows us to change the value of items within our function
+// now define a struct named BattleResult that comforms to RandomNumberGenerator. You can use drand48() to return a random Double
+struct BattleResult: RandomNumberGenerator {
+    func random() -> Double {
+        return drand48()
+    }
+}
 
-// You can extend a generic type
+// Now we can create an instance of BattleResult
+let battleResult = BattleResult()
 
+// Create a let named damage and set its value to a call to battleResult.random()
+var damage = battleResult.random()
+
+// Now create a let named directHit and set it to battleResult.randomBool()
+var directHit = battleResult.randomBool()
 /*:
-**Mixing Swift and Objective C**
-
-To import a set of Objective-C files in the same app target as your Swift code, you rely on an Objective-C bridging header to expose those files to Swift. Xcode offers to create this header file when you add a Swift file to an existing Objective-C app, or an Objective-C file to an existing Swift app.
-
-To import Objective-C code into Swift from the same target
-
-In your Objective-C bridging header file, import every Objective-C header you want to expose to Swift. For example:
-
-#import "XYZCustomCell.h"
-#import "XYZCustomView.h"
-#import "XYZCustomViewController.h"
-
-In Build Settings, in Swift Compiler - Code Generation, make sure the Objective-C Bridging Header build setting under has a path to the bridging header file.
-The path should be relative to your project, similar to the way your Info.plist path is specified in Build Settings. In most cases, you should not need to modify this setting.
-
-When you import Swift code into Objective-C, you rely on an Xcode-generated header file to expose those files to Objective-C. This automatically generated file is an Objective-C header that declares the Swift interfaces in your target. It can be thought of as an umbrella header for your Swift code. The name of this header is your product module name followed by adding "-Swift.h".
-
-Once you import your Swift code into Objective-C, use regular Objective-C syntax for working with Swift classes.
+You can use protocol extensions to provide a default implementation to any method or property requirement of that protocol. If a conforming type provides its own implementation of a required method or property, that implementation will be used instead of the one provided by the extension.
 */
 
 /*:
-When I wanted to add a swift class and access it from an Obj C class.
+## Error Handling
 
-I had to add this import to any class that wanted to access the swift class
+Swift provides first-class support for throwing, catching, propagating, and manipulating recoverable errors at runtime.
 
-#import "LOWES-swift.h"
+In Swift, errors are represented by values of types that conform to the ErrorType protocol.
 
-Make sure the new swift file has the Target Membership set in the File Inspector.
+enums are particularly useful when defining error types.
 
-Items marked as private in Swift will not be available in Obj-C
 */
+// Let's create an enum that throws errors associaetd with reading a file
+enum FileReadingError: ErrorType {
+    case FileDoesNotExist(fileName: String)
+    case FileIsWrongType
+    case FileIsCorrupt
+}
+
+/*:
+**Propagating Errors**
+
+If a function, method or initializer can throw an error, you include the throws keyword in the definition before the return type.
+
+`func someFunc() throws -> String {`
+
+return "SomeString"
+
+`}`
+
+A throwing function propagates errors that are thrown inside of it to the scope from which it’s called.
+*/
+/*:
+Throwing an error lets you indicate that something unexpected happened and the normal flow of execution can’t continue. You use a throw statement to throw an error.
+*/
+// Create a struct named FileReader with a function named readFile that throws a FileReadingError.FileDoesNotExist error. This type of error takes a string as a file name
+struct FileReader {
+    func readFile() throws {
+        guard readFileSuccessfully() else {
+            throw FileReadingError.FileDoesNotExist(fileName: "SomeFile.xml")
+        }
+    }
+}
+
+
+// We're going to use this function
+func readFileSuccessfully() -> Bool {
+    let battleResult = BattleResult()
+    return battleResult.randomBool()
+}
+
+// We're not just going to automatically throw an error. We only want to throw it if the error actually occurs
+
+// Add a guard statement to determine when to throw the error, The guard statement should call the readFileSuccessfully function and if it returns false it throws the error. Remember the guard statement looks like this
+// guard testABool else {
+//    handle the error
+// }
+
+/*:
+When an error is thrown, some surrounding piece of code must be responsible for handling the error. For example, by correcting the problem, trying an alternative approach, or informing the user of the failure.
+
+There are four ways to handle errors in Swift.
+
+- propagate the error from a function to the code that calls that function
+
+- handle the error using a do-catch statement
+
+- handle the error as an optional value
+
+- assert that the error will not occur
+
+
+You write the try keyword—or the try? or try! variation—before a piece of code that calls a function, method, or initializer that can throw an error.
+*/
+
+/*:
+**do-catch**
+
+You use a do-catch statement to handle errors by running a block of code. If an error is thrown by the code in the do clause, it is matched against the catch clauses to determine which one of them can handle the error.
+
+`do checkSomething {`
+
+// persome some statements
+
+`} catch matchSomethingHere {`
+
+// persome some statements
+
+`} catch matchSomethingElseHere {`
+
+// persome some statements
+
+`}`
+*/
+// Rewrite our FileReader struct to use a do-catch instead of the guard statement
+struct FileReader2 {
+    func readFile() {
+        do {
+            try readFileSuccessfully()
+            print("Do Something")
+        }
+        catch is ErrorType {
+            print("Log Error")
+        }
+    }
+    func readFileSuccessfully() throws -> Bool {
+        let battleResult = BattleResult()
+        return battleResult.randomBool()
+    }
+}
+
+// Create an instance of FileReader2 and then call the readFile method
+var fileReader = FileReader2()
+fileReader.readFile()
+/*:
+**Converting Errors to Optional Values**
+
+You use try? to handle an error by converting it to an optional value. If an error is thrown while evaluating the try? expression, the value of the expression is nil.
+
+Suppose you are calling the function you called earlier that throws an error.
+
+`var someVar = try? readFileSuccessfully()`
+
+If readFileSuccessfully() throws an error, the value of someVar is nil otherwise it gets value returned by the function.
+*/
+// It would look something like this
+
+struct FileReader3 {
+    func readFile() {
+        let _ = try? readFileSuccessfully()
+    }
+    
+    func readFileSuccessfully() throws -> Bool {
+        let battleResult = BattleResult()
+        guard battleResult.randomBool() else {
+            throw FileReadingError.FileIsWrongType
+        }
+        return battleResult.randomBool()
+        
+    }
+    
+}
+
+// Create an instance of FileReader3 and then call the readFile method
+var fileReader3 = FileReader3()
+fileReader3.readFile()
+
+/*:
+**Disabling Error Propagation**
+
+Sometimes you know a throwing function or method won’t, in fact, throw an error at runtime. On those occasions, you can write try! before the expression to disable error propagation and wrap the call in a runtime assertion that no error will be thrown. If an error actually is thrown, you’ll get a runtime error.
+
+`let someVar = try! someFunctionGuaranteedToWork()`
+*/
+struct FileReader4 {
+    func readFile() {
+        let _ = try! readFileSuccessfully()
+    }
+    
+    func readFileSuccessfully() throws -> Bool {
+        let battleResult = BattleResult()
+        guard battleResult.randomBool() else {
+            throw FileReadingError.FileIsWrongType
+        }
+        return true
+        
+    }
+    
+}
+
+// Create an instance of FileReader4 and then call the readFile method
+var fileReader4 = FileReader4()
+//fileReader4.readFile()
+// Comment out the call to readFile if is causing an error
+
+var test4 = "test4"
+
+/*:
+**defer**
+
+You use a defer statement to execute a set of statements just before code execution leaves the current block of code. This code always gets executed whether we are exiting the scope because of an error or a return statement or some other method.
+
+`func someFunc() throws {`
+
+if something {
+
+// do something
+
+}
+
+defer {
+
+// perform this code when leaving scope regardless if an error is thrown or not
+
+}
+
+while let someVar = try trySomeFunction() {
+
+// do some work if successful
+
+}
+
+`}`
+*/
+struct FileReader5 {
+    
+    func readFile() {
+        defer {
+            cleanUp()
+        }
+        readFileSuccessfully()
+    }
+    
+    func readFileSuccessfully() {
+        let battleResult = BattleResult()
+        if battleResult.randomBool() {
+            print("battleResult.randomBool() = True")
+        } else {
+            print("battleResult.randomBool() = false")
+        }
+    }
+    
+    func cleanUp() {
+        print("log, free up etc ...")
+    }
+    
+}
+
+// Create an instance of FileReader5 and then call the readFile method,  check the console for the order of lines printed out
+var fileReader5 = FileReader5()
+fileReader5.readFile()
+
 
