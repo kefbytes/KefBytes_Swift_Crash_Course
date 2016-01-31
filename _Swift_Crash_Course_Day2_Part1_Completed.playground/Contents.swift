@@ -5,7 +5,7 @@ import UIKit
 # Swift Crash Course
 *A fast paced intro to Swift*
 
-Day 1, Part 3
+Day 2, Part 1
 */
 
 /*:

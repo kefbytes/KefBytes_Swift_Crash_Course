@@ -1,9 +1,9 @@
 import UIKit
-
-import UIKit
 /*:
 # Swift Crash Course
 *A fast paced intro to Swift*
+
+Day 2 Part 2
 
 ## Functions
 
@@ -19,98 +19,42 @@ return something
 
 `}`
 */
-// Create a function that takes two Strings as parameters and returns a String.
-
-func someFunc(param1: String, param2: String) -> String {
-    
-    let response = "success"
-    
-    // do something
-    
-    return response
-    
-}
-
+// Create a function named firstAndLastName that takes two Strings as parameters and returns a String.
 
 /*:
 If a function is not going to return anything you can omit the arrow and return type.
 */
-// Create a function that takes an Int and a String as parameters and doesn't return anything.
-
-func someFunc(param1: String, param2: Int) {
-    
-    print("entered someFunc2")
-    
-}
-
+// Create a function named nameAndAge that takes an Int and a String as parameters and doesn't return anything.
 
 /*:
 If a function is not going to take any parameters you can omit those
 */
-// Create a function that takes no parameters and returns nothing.
+// Create a function named hello that takes no parameters and returns nothing.
 
-func someFunc() {
-    
-}
+// Call the hello function
 
+//Create the same hello function that takes one parameter, name, which is a String. The function should print out a greeting using the name parameter passed in.
+
+// Call the new hello function passing in a name
+
+//Create another hello function that takes two parameters, the same name one we just used and a second one named numberOfTimes which is an Int. The function should call the hello function that takes one parameter in a loop that runs the number of times as the Int parameter passed in.
+
+// Call the newest hello function passing in a name and an Int.
+
+//We ended up with the first basic hello function and then two overloaded versions
 
 /*:
-If you don't care about naming a parameter you can just substitute an underscore.
+You can set default values for parameters in your functions.
+
+Let's start a new version of a similar function. Start by creating a func named greeting that takes a single parameter, name, which is a String and has a default value of "World". This function is going to call our hello function which takes one parameter(name).
 */
-// Create a function where one of the parameters is not named.
 
-func someFunc(param1: String, _: String) -> String {
-    
-    let response = "success"
-    
-    // do something
-    
-    return response
-    
-}
+// Call our greeting function and don't pass it any value.
 
+// Try calling the same greeting function again, but this time pass in a name
 
 /*:
-A function can return multiple values with a tuple.
-*/
-// Create a function that returns a tuple.
-
-func someFunc()->(String, String) {
-    
-    return ("Hannah", "Noah")
-    
-}
-
-
-/*:
-A function can also return an optional tuple.
-*/
-// Create a function that returns an optional tuple.
-
-func someFunc()->(String, String)? {
-    
-    return ("Hannah", "Noah")
-    
-}
-
-
-
-
-/*:
-This is different than returning a Tuple of optionals
-*/
-// Create a function that returns two optionals.
-
-func someFunc()->(String?, String?) {
-    
-    return ("Hannah", "Noah")
-    
-}
-
-
-
-/*:
-Function parameters have both an external parameter name and a local parameter name. An external parameter name is used to label arguments passed to a function call. A local parameter name is used in the implementation of the function.
+Function parameters have both an external parameter name and a local parameter name. We use the external name when calling the function and passing in the arguments. A local parameter name is used within the implementation of the function.
 
 By default, the first parameter omits its external name, and the second and subsequent parameters use their local name as their external name. All parameters must have unique local names. Although it’s possible for multiple parameters to have the same external name, unique external names help make your code more readable.
 
@@ -118,69 +62,82 @@ You write an external parameter name before the local parameter name it supports
 
 If you provide an external parameter name for a parameter, that external name must always be used when you call the function.
 */
+// Create a new version of greeting, giving the name parameter an external name of personWithName. Let's also add a second parameter, numberOfTimes which is an Int.
 
-// Create a function that has external names for it's parameters.
-func someFunc(externalparam1Name param1: String, externalparam2Name param2: String) -> String {
-    
-    let response = "success"
-    
-    // do something
-    
-    return response
-    
-}
-
-
-
-
-
-/*:
-You can set default values for parameters in your functions.
-*/
-
-// Create a function that sets default values for it's parameters.
-func someFunc(daughter:String = "Hannah", son:String)->(String, String) {
-    
-    return ("Hannah", "Noah")
-    
-}
-
-
-
+// Now when we call the new greeting function we must use the external name for our String parameter.
 
 /*:
 **variadic parameters**
 
 A variadic parameter accepts zero or more values of a specified type.
 
+You use a variadic parameter to specify that the parameter can be passed a varying number of input values when the function is called.
+
 The values passed to a variadic parameter are made available within the function’s body as an array of the appropriate type.
 
 A function may have at most one variadic parameter.
-*/
 
-// Create a function that takes a variadic parameter.
-func someFunc(numbers: Int ...) {
-    for number in numbers {
-        print(number)
-    }
+func variadicFunction(numbers:Int...) {
+
 }
+*/
+// Create a function named calculateGrade that takes a Int variadic parameter of testScores.
 
-
-
+// Call the calculateGrade function passing in some test scores and assign the result ot a var named grade
 
 /*:
 Function parameters are constants by default.
 
 You can define variable parameters by prefixing the parameter name with the var keyword.
-*/
 
-// Create a function that takes a variable parameter.
-func someFunc1(var number: Int) {
-    number++
+func varFunc(var number: Int) {
+
 }
+*/
+// Create a function named calculateGradeWithXtraCredit that takes a Int variable parameter and adds 10 to it.
 
+// test out the calculateGradeWithXtraCredit function by passing it a grade
 
+/*:
+A function can return multiple values with a tuple.
+*/
+// Create a function named getCredentials that returns a tuple of two Strings with external names,userName and password.
 
+// Call getCredentials assigning the returned tuple to a let named credentials
+
+/*:
+We can then reference the credntials by index or by their external name.
+*/
+// Reference the elements of credentials by index
+
+// Reference the elements by external name
+
+/*:
+We also could have assigned the result to a tuple.
+*/
+// Call getCredentials again and assign the result to a tuple.
+
+/*:
+Now we access the elements by name within the tuple
+*/
+// Try accessing them
+
+/*:
+A function can also return an optional tuple.
+*/
+// Create a function named getUser that returns an optional tuple.
+
+/*:
+This is different than returning a Tuple of optionals
+*/
+// Create a function named getEmployeeFromID that returns two optionals.
+
+/*:
+functions can be assigned to constants or variables
+*/
+// Assign the getCredentials function to a let
+
+// Now we can use the constant to call the function
 
 /*:
 **in-out parameters**
@@ -190,26 +147,18 @@ Variable parameters can only be changed within the function itself. If you want 
 You write an in-out parameter by placing the inout keyword at the start of its parameter definition.
 
 You can only pass a variable as the argument for an in-out parameter. You cannot pass a constant or a literal value as the argument, because constants and literals cannot be modified.
+
+
 */
-
-// Create a function that takes an inout parameter.
-func someFunc(inout number: Int) {
-    number++
-}
-
+// Create a function named deductFromGradeForLateSubmition that takes an Int inout parameter and subtracts 10 from it.
 
 /*:
 You place an ampersand (&) directly before a variable’s name when you pass it as an argument to an in-out parameter, to indicate that it can be modified by the function.
 */
-
-// Call you function that has an inout parameter, passing it an Int
-var someInt = 11
-someFunc(&someInt)
-someInt
-
+// Call your deductFromGradeForLateSubmition function passing it the grade var we declared earlier
 
 /*:
-##Function Types
+**Function Types**
 
 Every function has a specific function type, made up of the parameter types and the return type of the function.
 
@@ -225,71 +174,31 @@ The funct type of the above func is (String, String) -> Int
 /*:
 Function types can be used just like any other types in Swift. You can define a constant or variable to be of a function type and assign an appropriate function to that variable.
 */
-
-// Create a var with a type that matches one of the functions you created above and set it's value to that function.
-func someIntFunc(a: Int, b: Int) -> Int {
-    
-    return a + b
-    
-}
-
-var anIntFunc: (Int, Int) -> Int = someIntFunc
-
+// Create a let named calculateGradeFunc with a type that matches the type of calculateGradeWithXtraCredit and assign that function to the let.
 
 /*:
 You can use a function type such as (Int, Int) -> Int as a parameter type for another function. This enables you to leave some aspects of a function’s implementation for the function’s caller to provide when the function is called.
 */
-
-// Create a function that takes a function type as one of it's parameters.
-func someIntFunc(a: Int, b: (Int, Int) -> Int) -> Int {
-    
-    return 7
-    
-}
-
-
-
+// Create a function named semesterGrade that takes the same function type that we just used in calculateGradeFunc as one of it's parameters.
 
 /*:
 You can also use a function type as the return type of another function. You do this by writing a complete function type immediately after the return arrow (->) of the returning function.
 */
-func intFunc(a: Int) -> (Int, Int) -> Int {
-    
-    return someIntFunc
-    
-}
-
-
-
+//func semesterGrade(a: Int) -> (Int...) -> Int {
+//    return calculateGradeFunc
+//}
 /*:
 Functions can be nested inside other functions
 
 Nested functions have access to variables that were declared in the outer function. You can use nested functions to organize the code in a function that is long or complex.
 */
+// Create a function named finalGrade that has a second function nested inside it.
 
-// Create a function that has a second function nested inside it.
-
-func outFunc(inout a:Int) -> Int {
-    
-    func innerFunc() {
-        
-        print(a)
-        
-    }
-    
-    return ++a
-    
-}
-
-var b = 3
-var c = outFunc(&b)
-
-/* :
+/*:
 Function calls can be wrapped in a print line.
-*/
 
 print(someFunc(7))
-
+*/
 
 /*:
 ## Closures
@@ -323,7 +232,6 @@ statements
 /*:
 Here is a function that sorts two strings, we will be using it in our exploration of closures. It's a very simple function that takes two Strings and returns false if the first String comes before the second String alphabetically.
 */
-
 func backwards(s1: String, _ s2: String) -> Bool {
     return s1 > s2
 }
@@ -331,12 +239,10 @@ func backwards(s1: String, _ s2: String) -> Bool {
 /*:
 Here's an example of using the backwards function.
 */
+backwards("Bruce", "Wayne")
 
-backwards("Noah", "Hannah")
-
-// Let's create an Array of colors
+// Here's an array of colors that we'll be using
 var colors = ["Red", "Green", "Blue", "Yellow"]
-
 /*:
 Swift's standard Library provides a sort(_:) method which accepts a closure that takes two arguments of the same type as the type of array we want to sort. In this case we have an Array of Strings so the closure takes two Strings and returns a Bool saying whether the first argument should appear before the second argument.
 */
@@ -346,68 +252,55 @@ We're going to start our exporation by passing our backwards function as the clo
 
 It will look like this.
 */
-
 var reverseSortedColors = colors.sort(backwards)
 
 /*:
 In the above example we passed a ready made function as the closure to our sort method. But what if that function wasn't ready made and we wanted to create it on the fly?
-
-We could do that by doing something like this.
 */
-var reverseSortedColors2 = colors.sort({ (s1: String, s2: String) -> Bool in
-    return s1 > s2
-})
+// Create a new var named reversedColors that is the same as our reverseSortedColors var but substitues a closure for backwards. The closure should match the implementation of backwards, so it does the same thing but we are going to write out the functionality so we can customize it.
 
 /*:
 In that example we passed an unnamed closure.
 
 The start of the closure’s body is introduced by the in keyword. This keyword indicates that the definition of the closure’s parameters and return type has finished, and the body of the closure is about to begin.
 
-In our example because we are sorting on an Array of Strings it is unnecessary to provide the type in our arguments and we can shorten it to this. Swift can infer the type based on the Array we are sorting on.
+In our example because we are sorting on an Array of Strings it is unnecessary to provide the type in our arguments. Swift can infer the type based on the Array we are sorting on.
 */
-
-var reverseSortedColors3 = colors.sort({ (s1, s2) -> Bool in
-    return s1 > s2
-})
+// Redo the reversedColors var, naming it reversedColors2 and remove the String types from the parameters.
 
 /*:
-In addition to the parameter types it's also unnecessary to provide the return type.
-
-So the example can be further reduced to this.
+In addition to the parameter types it's also unnecessary to provide the return type. Swift can infer that as well.
 */
-
-var reverseSortedColors4 = colors.sort({ (s1, s2) in
-    return s1 > s2
-})
+// Create reversedColors3 removing the return type
 
 /*:
-While we're at it let's put it all on one line since it's so short. And we don't need those parens around our parameters either.
+While we're at it let's put it all on one line since it's so short.
 */
+// Create reversedColors4 putting everything on one line
 
-var reverseSortedColors5 = colors.sort({ s1, s2 in return s1 > s2 })
+/*:
+And we don't need those parens around our parameters either.
+*/
+// Create reversedColors5 removing the parens
 
 /*:
 Single-expression closures can implicitly return the result of their single expression by omitting the return keyword from their declaration. So we shorten it even more.
 */
-
-var reverseSortedColors6 = colors.sort({ s1, s2 in s1 > s2 })
+// Create reversedColors6 removing the return keyword
 
 /*:
 Swift provides shorthand argument names to inline closures; $0, $1, $2 etc..
 
 When using these you can omit the argument list, and also the in keyword as well because the closure is made up of only it's body.
 */
-
-var reverseSortedColors7 = colors.sort({ $0 > $1 })
+// Create reversedColors7 removing the parameters and the in keyword and change the argument names to use the shorthand version
 
 /*:
 Wow, that is quite a bit shorter than our original function that we stuck in there.
 
 But believe it or not this can be shorted even more. Swift’s String type defines its string-specific implementation of the greater-than operator (>) as a function that has two parameters of type String, and returns a value of type Bool. This exactly matches the function type needed by the sort(_:) method. Therefore, you can simply pass in the greater-than operator, and Swift will infer that you want to use its string-specific implementation.
 */
-
-var reverseSortedColors8 = colors.sort( > )
-
+// var reverseSortedColors8 = colors.sort( > )
 /*:
 **Trailing Closures**
 
@@ -415,8 +308,6 @@ If you need to pass a closure expression to a function as the function’s final
 
 Trailing closures are most useful when the closure is sufficiently long that it is not possible to write it inline on a single line.
 */
-
-
 func someFunctionThatTakesAClosure(closure: () -> Void) {
     // function body goes here
 }
@@ -436,79 +327,10 @@ someFunctionThatTakesAClosure() {
 /*:
 This means our reverseSortedColors7 var above could have been written like this.
 */
-
-var reverseSortedColors7a = colors.sort() { $0 > $1 }
+var reversedColors7a = colors.sort() { $0 > $1 }
 
 /*:
 And if the trailing closure is the only argument passed you can omit the ()
 */
+var reversedColors7b = colors.sort{ $0 > $1 }
 
-var reverseSortedColors7b = colors.sort{ $0 > $1 }
-
-/*:
-Here's another example.
-
-We start with a class which has an init that takes a closure as a parameter. It also has a function named testAnotherCallback that takes two parameters, a String and a closure.
-*/
-
-class SomeStackSetup {
-    init (handleSuccessfulCompletion: String -> Void) {
-        // do something and if successful call handleSuccessfulCompletion
-        handleSuccessfulCompletion("responseString")
-    }
-    
-    func testAnotherCallback (name: String, whenDone: (String) -> Void) {
-        print(">>>>> SomeStackSetup.testAnotherCallback() name = \(name) <<<<<")
-        whenDone("Hannah")
-    }
-}
-
-/*:
-Now we'll define a ViewController class that calls the SomeStackSetup.testAnotherCallback function from it's viewDidLoad.
-*/
-class ViewController: UIViewController {
-    var someStackSetup: SomeStackSetup!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        someStackSetup.testAnotherCallback("Noah") {
-            returnedValue -> Void in
-            print(">>>>> whenDone:returnedValue = \(returnedValue) <<<<<")
-        }
-    }
-}
-
-
-/*:
-When it calls the testAnotherCallback function it passes a trailing closure.
-
-In this case the trailing closure consists if
-
-`{
-returnedValue -> Void in
-print(">>>>> whenDone:returnedValue = \(returnedValue) <<<<<")
-}`
-*/
-
-/*:
-Our last class is the app delegate.
-*/
-
-class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let someStackSetup: SomeStackSetup = SomeStackSetup() {(response) -> Void in
-            if response == "responseString" {
-                self.completeSetup()
-            } else {
-                print(">>>>> response is not what we expected, abort setup <<<<<")
-            }
-        }
-        let viewController: ViewController = self.window!.rootViewController as! ViewController
-        viewController.someStackSetup = someStackSetup
-        
-        return true
-    }
-    func completeSetup() {
-        print(">>>>> AppDelegate:completeSetup() <<<<<")
-    }
-}

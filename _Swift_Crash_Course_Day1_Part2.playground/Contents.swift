@@ -35,31 +35,36 @@ So to create a Song object we will use something like this.
 
 Song(nameIn: "Name of Song", artistIn: "Name of Artist")
 */
-
-// Create and array that holds a type of AnyObject and has three Song objects
-
-
+// Create and array named songs that holds a type of AnyObject and has three Song objects
 
 // Iterate over the Array and set each item to be of type Song, we can do so because we know the Array holds Songs
 
+// Can you create a shorter version
 
+// Create an Array named items with type Any. It should hold a String, an Int and a Song
 
-// A shorter version
+// While iterating over the Array we use a switch case to find the type of each item. Uncomment this to see it work
 
-
-
-// Create an Array with type Any. It should hold a String, an Int and a Song
-
-
-
-// While iterating over the Array we use a switch case to find the type of each item.
-
-
+//for item in items {
+//    
+//    switch item {
+//    case is String:
+//        print("Album name: \(item)")
+//    case is Int:
+//        print("Year released: \(item)")
+//    case is Song:
+//        var song = item as! Song
+//        print("song title: \(song.name), artist: \(song.artist)")
+//    default:
+//        print("Found something unexpected")
+//    }
+//    
+//}
 
 /*:
 **Tuple**
 
-Tuples hold multiple valus
+Tuples hold multiple values
 
 The elements of a tuple can be referred to either by name or by number.
 
@@ -74,30 +79,21 @@ You can create a var that is a Tuple by seperating the values by a comma, naming
 
 `let someTuple = (valueName:value, valueName:value)`
 */
-
-// Create a Tuple that names it's values
-
-
+// Create a Tuple named album that holds two values, one is a String named albumName, the other is an Int named releaseData.
 
 /*:
 You can access the values of the Tuples by number
 
 `someTuple.0`
 */
-
-// Access the second value of the Tuple you created and assign it to a new var
-
-
+// Access the second value of the album Tuple you created and assign it to a new let
 
 /*:
-You can also access thr value of a Tuple by name, if you assigned names when creating it.
+You can also access the value of a Tuple by name, if you assigned names when creating it.
 
 `someTuple.valueName`
 */
-
-// Access a value of your Tuple by name
-
-
+// Access the first value of your album Tuple by name and assign it to a new let
 
 /*:
 **Type Alias**
@@ -112,16 +108,12 @@ Many times you will see typealias used to define a function defition like so.
 
 typealias funcDef = (String, String) -> String
 */
-
-// Create a typealias
-
-
+// Create a typealias named AudioSample  that is of type UInt16
 
 /*:
 Once you define a type alias, you can use the alias anywhere you might use the original name.
 */
-
-
+//var maxAmplitudeFound = AudioSample.min
 
 /*:
 Here, AudioSample is defined as an alias for UInt16. Because it is an alias, the call to AudioSample.min actually calls UInt16.min, which provides an initial value of 0 for the maxAmplitudeFound variable.
@@ -130,14 +122,12 @@ In Swift a function definition takes parameters inside () seperated by commas an
 
 So in this case  (String, Int) -> Void, a function would take a String and an Int as arguments and return Void meaning it doesn't return anything at all.
 */
+// create a typealias named Response that defines a function definition of (String) -> Void
 
-// create a typealias that defines a function definition
-
-
-
-// Now we can use that anywhere a function definition can be used
-
-
+// Now we can use the Response typealias anywhere a function definition can be used, uncomment the setup func
+//func setup(completion: CoreDataManagerCompletionHandler) {
+//    
+//}
 
 /*:
 ### Properties
@@ -160,10 +150,9 @@ let myProperty = "A Property"
 var anotherproperty = 2
 }`
 */
+// Create a struct named Account with a couple properties which are Strings, one being a let named accountName, the other being a var named accountPassword.
 
-// Create a struct with a couple properties
-
-
+//
 
 /*:
 **Stored Properties**
@@ -174,10 +163,7 @@ Stored properties are provided only by classes and structures.
 
 A stored property does not have a backing store instance variable like it would in ObjC. There are no instance variables in Swift.
 */
-
-// The properties you created just above were stored properties. Add one more stored property to the struct.
-
-
+// The properties you created just above were stored properties. Add one more stored property to the struct named expirationDate which should be an Int.
 
 /*:
 **Lazy Stored Properties**
@@ -190,10 +176,7 @@ Lazy Stored Properties will always be vars.
 lazy var someVar = someValue
 }`
 */
-
-// Add a lazy stored property to your struct.
-
-
+// Add a lazy stored property named intitialLogin to your struct.
 
 /*:
 One reason you might want to use a lazy stored property would be when we may not always need the property and getting it's value might be something complicated. In this case we wouldn't want to calculate the value each time the struct is used, so we use the lazy stored property to save on overhead.
@@ -202,7 +185,7 @@ One reason you might want to use a lazy stored property would be when we may not
 /*:
 Example
 */
-class AComplicatedClass {
+class APICallForUserInfo {
     // assume that instantiating this class does some complicated and resource intensive stuff that would slow down the app even if just momentarily.
     // call API
     // API queries large DB
@@ -210,32 +193,22 @@ class AComplicatedClass {
     // etc
 }
 
-class AClass {
+class AccountUser {
     
     // we may not always need this property and getting it's value is overhead so only create it when needed
-    lazy var aLazyProp = AComplicatedClass()
+    lazy var userData = APICallForUserInfo()
 }
 
 /*:
 If you create an instance of a structure and assign that instance to a constant, you cannot modify the instance’s properties, even if they were declared as variable properties
 */
+// Create an instance of our Account struct named account and assign it to a constant
 
-// Add a var property to your struct if it doesn't have one
-
-
-
-// Assign our struct to a constant
-
-
-
-// Check out our var property
-
-
+// check for the value of our accountName var
 
 // try changing the value of the var property
 
-
-
+// account.accountName = "adminUser"
 /*:
 **Computed Properties**
 
@@ -253,10 +226,7 @@ do some computations
 }
 }`
 */
-
-// Add a computed property to your struct. The computation could be as simple as adding 1 to an Int or "The" to a String.
-
-
+// Add a computed property to your struct named credentials. It should return a String that gives the accountName and accountPassword.
 
 /*:
 Example
@@ -341,9 +311,6 @@ do something
 
 // Add a property observer to one of your stored properties in the struct
 
-
-
-
 /*:
 **Global & Local Variables**
 
@@ -351,8 +318,6 @@ The capabilities described above for computing and observing properties are also
 
 Global constants and variables are always computed lazily, in a similar manner to Lazy Stored Properties. Unlike lazy stored properties, global constants and variables do not need to be marked with the lazy modifier.
 */
-
-
 
 /*:
 **Type Properties**
@@ -371,17 +336,15 @@ You define type properties with the static keyword.
 static var storedTypeProperty = "Some value."
 }`
 */
-
 // add a type property to your struct
-
-
 
 /*:
 You access type properties with dot notation.
 
 `SomeStructure.storedTypeProperty`
 */
-
+// uncomment the next line
+//Account.loginAPI
 /*:
 When in a class you can use class instead of static.
 
@@ -389,8 +352,4 @@ When in a class you can use class instead of static.
 class var classTypeProp = someValue
 }`
 */
-
-
-
-
 

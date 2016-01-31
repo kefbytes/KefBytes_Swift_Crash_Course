@@ -5,7 +5,7 @@ import UIKit
 # Swift Crash Course
 *A fast paced intro to Swift*
 
-Day 1, Part 3
+Day 2, Part 1
 */
 
 /*:
@@ -19,13 +19,11 @@ The swift language makes heavy use of optionals, many functions return an option
 */
 
 /*:
-You declare an optional by adding a ? after the type in the declaration.
+You declare an optional by adding a ? after the type in the declaration. In the case of the example below this would be an optional String.
 
 `var someOptional:String?`
 */
-// Create an optional String.
-
-var optional1:String?
+// Create an optional String named userName.
 
 /*:
 To get the value of an optional you must unwrap it. There are a few options of how to do so.
@@ -38,23 +36,16 @@ You force unwrap something by adding an explanation mark after the var name.
 
 `var newVar = someOptionalString!`
 */
-// Try force unwrapping the optional you created above and assigning it to a new var
-
-//var var1 = optional1!
+// Try force unwrapping the userName optional String you created above and assigning it to a new let
 
 /*:
 What happened?
 
 Unless you already set a value you should get an error because you are unwrapping an optional with no value.
 */
-
-// Now assign a value to your optional, just as you would any other var.
-
-optional1 = "Hannah"
+// Now assign a value to your userName optional.
 
 // Try force unwrapping again.
-
-var var1 = optional1!
 
 /*:
 What happened this time?
@@ -63,23 +54,19 @@ It should have succeeded.
 */
 
 /*:
-One option is to test for nil first.
+An alternative option to the forced unwrap is to test for nil first, and then unwrap.
 
 `if someOptionalString != nil {
 var aGoodVarWithAValue = someOptionalString!
 }`
 */
+// Check your userName optional for nil, then assign it to a new var if not nil.
 
-// Check your optional for nil then assign it to a new var if it has a value.
-
-if optional1 != nil {
-    var var1 = optional1!
-}
-
+// This time the forced unwrap is perfectly safe since we checked to make sure the optional had a value
 /*:
 **Optional Binding**
 
-There is nothing wrong with the above, but there is a better solution in Swift, optional binding.
+There is nothing wrong with the above code where we check for nil and then force unwrap. But Swift gives us a better solution, optional binding.
 
 Option Binding uses an if statement and attempts to unwrap an option and assign it to a let all in one move. if this succeeeds, the body of the if block is performed. If not, meaning the optional had no value we move on and not perform the if block.
 
@@ -87,13 +74,7 @@ Option Binding uses an if statement and attempts to unwrap an option and assign 
 print((tempString), terminator: "")
 }`
 */
-
-// Use optional binding to assign the value of your optional to a new var.
-
-if let tempVar = optional1 {
-    var var1 = optional1
-    var var2 = tempVar
-}
+// Use optional binding to assign the value of your userName optional to a new var.
 
 /*:
 **Implicitly Unwrapped Optional**
@@ -101,19 +82,12 @@ if let tempVar = optional1 {
 An Implicitly Unwrapped Optional can be used when you know a variable will always have a value. For example if you are setting the value at the time of initialization you can use a Implicitly Unwrapped Optional.
 
 These can be avoided more often than not.
-*/
 
-/*:
-You create an Implicitly Unwrapped Optional by putting an explanation mark after the type instead of a question mark.
+You create an Implicitly Unwrapped Optional by putting an explanation mark after the type during declaration instead of a question mark.
 
 `var someImplicitlyUnwrappedOptional: String!`
 */
-
 // Create an Implicitly Unwrapped Optional
-
-let optional2:String!
-
-optional2 = "Cardinal"
 
 /*:
 Implicitly unwrapped optionals are useful when an optional’s value is confirmed to exist immediately after the optional is first defined and can definitely be assumed to exist at every point thereafter.
@@ -132,17 +106,17 @@ ourOptional = SomeOtherClass.someFuncThatReturnsAValue()
 
 `}`
 */
-class SomeClass {
+// Here's a class named NetworkManager use it to create an Implicitly Unwrapped Optional
+class NetworkManager {
     
-    var ourOptional:String!
+    // create an Implicitly Unwrapped Optional named authToken that is an optional String.
     
     init() {
-        ourOptional = "Hannah"
-        print(ourOptional)
+        // Set a value for authToken
     }
 }
 
-var class1 = SomeClass()
+var networkManager = NetworkManager()
 /*:
 **Optional Chaining**
 
@@ -159,77 +133,37 @@ You add a question mark after the optional you wish to unwrap in the middle of a
 `someOptional?.someProperty`
 
 */
+// Create a class named Guitar with a single var named guitarBrand which is an Optional String with no intitial value.
 
-// Create a class named Class1 with a single var of type Optional String with no intitial value.
+// Create a second class named RockBand that has a single var named guitar that is of type optional Guitar.
 
-class Class1 {
-    
-    var name:String?
-    
-}
+// Create a var named rockBand that is an instance of RockBand.
 
-// Create a second class named Class2 that has a single var who's type is Optional Class1.
+// Using the rockBand var we just created initialize the guitar var.
 
-class Class2 {
-    
-    var class1:Class1?
-    
-}
-
-// Create a var that is intialized as an instance of Class2.
-
-var class2 = Class2()
-
-// Set the var in Class2 to a new instance of Class1.
-
-class2.class1 = Class1()
-
-// Use optional chaining to try to get the value of the var in Class1 and assign it to a new var.
-
-var name = class2.class1?.name
+// Use optional chaining to try to get the value of the guitarBrand from the guitar var in RockBand and assign it to a new var named guitarBrand.
 
 // What's the value now of the last var you created? It should be nil.
 
-// What would have happened if we hadn't set the a value for class2.class1 and used forced unwrap instead of optional chaining?
+// What would have happened if we hadn't set the a value for rockBand.guitar and used forced unwrap instead of optional chaining?
 
-var name1 = class2.class1!.name
+// Try commenting out the line 
+// rockBand.guitar = Guitar() 
+// and the line 
+// var guitarBrand = rockBand.guitar?.guitarBrand
+// then uncomment this line 
+//var guitarBrand = rockBand.guitar!.guitarBrand
 
 /*:
 You can use Optional Chainging to set values of properties.
 
 `someClass.someVarOfAClass?.someProperty`
 */
-
-// Use Optional Chaining to set the value of the var in Class1 by way of the var of Class2.
-
-class2.class1?.name = "Hannah"
+// Use Optional Chaining to set the value of the guitarBrand var in guitar by way of the var of rockBand.
 
 // Now if you try to get the value again through Optional Chaining like you did two steps ago it will have a value.
-
-var name2 = class2.class1?.name
-
-
-/* Optional example */
-
-let numArray = [1,2,5,7,9]
-let ourNumber = 7
-
-func checkOffendingNumber(numToCheck: Int, arrayOfNums: [Int]) -> Int {
-    
-    for tempNum in arrayOfNums {
-        if tempNum == numToCheck {
-            return numToCheck
-        }
-    }
-    return 0
-}
-
-checkOffendingNumber(ourNumber, arrayOfNums: numArray)
-
-//if checkOffendingNumber(ourNumber, arrayOfNums: numArray) {
-//    print("Number Found")
-//}
-
+// uncomment this line
+//var brandOfGuitar = rockBand.guitar?.guitarBrand
 /*:
 ## Enumerations
 
@@ -255,20 +189,7 @@ case Four
 
 `}`
 */
-
-// Create an enum of four Colors
-
-enum Color {
-    
-    case Magenta
-    
-    case Cyan
-    
-    case Yellow
-    
-    case Black
-    
-}
+// Create an enum named Color that has 4 cases of colors.
 
 /*:
 The cases are not assigned a default integer value, instead they are fully-fledged values in their own right with a type of Color (if that is what you named the enum).
@@ -281,9 +202,7 @@ case One, Two, Three, Four
 
 `}`
 */
-enum Color2 {
-    case Red, Green, Blue
-}
+
 /*:
 You can match enum values in a switch statement.
 
@@ -313,23 +232,7 @@ default
 
 `}`
 */
-
-// Create a switch case to match each of your cases in your Colors enum.
-
-var buttonColor = Color.Cyan
-
-switch buttonColor {
-    
-case.Magenta:
-    print("The button is magenta")
-case.Cyan:
-    print("The button is cyan")
-case.Yellow:
-    print("The button is yellow")
-case.Black:
-    print("The button is black")
-    
-}
+// Create a switch case to match each of your cases in your Color enum.
 
 /*:
 **Associated Values**
@@ -362,28 +265,14 @@ case Blue(Int, Int, Int)
 
 `}`
 */
-
-// Create an enum that uses associated values.
-
-enum RGBColor {
-    
-    case Red(Int, Int, Int)
-    
-    case Green(Int, Int, Int)
-    
-    case Blue(Int, Int, Int)
-    
-}
+// Re-create your Color enum with a name RGBColor and give it associated values
 
 /*:
 Then you could use the color and set it's RGB like this.
 
 `var loginButton = Color.Red(255, 0, 0)`
 */
-
-// Set the associated value of one of the cases of the enum you just created.
-
-var loginButton  = RGBColor.Red(255, 0, 0)
+// Set the associated value of the Green case of your RGBColor
 
 /*:
 **Raw Values**
@@ -404,57 +293,24 @@ case Blue = "00255"
 
 `}`
 */
-
-// Create an enum that has raw values.
-
-enum TextColor: String {
-    
-    case Red = "25500"
-    
-    case Green = "02550"
-    
-    case Blue = "00255"
-    
-}
-
-print(TextColor.Red)
-print(TextColor.Red.rawValue)
+// Create an enum named Link with a type String that lists some websites and sets their raw values as their addresses.
 
 /*:
 When you’re working with enumerations that store integer or string raw values, you don’t have to explicitly assign a raw value for each case. When you don’t, Swift will automatically assign the values for you.
 
 When strings are used for raw values, the implicit value for each case is the text of that case’s name.
 */
+// Create an enum named HexColor with type String that assigns raw values for two cases, but not the third.
 
-enum HexColor: String {
-    
-    case Red = "FF0000"
-    
-    case Green = "00FF00"
-    
-    case Blue
-}
+// Print out the raw values of all three cases of the HexColor enum: print(HexColor.Red.rawValue)
 
-print(HexColor.Red.rawValue)
-print(HexColor.Green.rawValue)
-print(HexColor.Blue.rawValue)
+// Now creat an enum named ErrorCode of type Int. Set the first two cases two be success = 200 and fail = 404, leave the third case timeout with no raw value.
 
+// Now print out all three of those values.
 
-enum ErrorCode: Int {
-    
-    case success = 200
-    
-    case fail = 404
-    
-    case timeout
-    
-}
-
-print(ErrorCode.success.rawValue)
-print(ErrorCode.fail.rawValue)
-print(ErrorCode.timeout.rawValue)
-
-/* Examples of using Enums */
+/*:
+Examples of using Enums 
+*/
 
 // In this example we are using an enum to set different types of Error, all of which are of type ErrorType
 enum CoreDataSetupError: ErrorType {
@@ -464,6 +320,8 @@ enum CoreDataSetupError: ErrorType {
 }
 
 // Then we throw a particular error type depending on what error occurred. The enum just makes it cleaner to throw the different types of errors by grouping them together.
+
+// If we uncomment this code we will get errors because this is some production code using classes we don't have acces to them here.
 
 //func getPersistentStoreCoordinator(storageType: CoreDataStorageType) throws -> NSPersistentStoreCoordinator {
 //    guard let model = getManagedObjectModel() else {
@@ -545,45 +403,5 @@ public enum LCLogLevel: String {
 //    return .None
 //}
 
-/*: -------------------------------------------------------------------------------------------------
-**guard**
 
-A guard statement, like an if statement, executes statements depending on the Boolean value of an expression. You use a guard statement to require that a condition must be true in order for the code after the guard statement to be executed. Unlike an if statement, a guard statement always has an else clause—the code inside the else clause is executed if the condition is not true.
-
-`guard let something = someUnknownThing else {
-return
-}`
-*/
-
-// Write a guard statement
-
-// first the if version
-let successfulResponse:String? = "Success"
-
-if let response = successfulResponse {
-    print("response is good")
-} else {
-    print("no response handle the error")
-}
-
-// now the guard version
-enum ResponseError: ErrorType {
-    case NoResponse
-    case TimeOut
-}
-
-guard let response = successfulResponse else {
-    // the response was a failure so handle it
-    throw ResponseError.NoResponse
-}
-// proceed with the response
-
-
-/*:
-If the guard statement’s condition is met, code execution continues after the guard statement’s closing brace. Any variables or constants that were assigned values using an optional binding as part of the condition are available for the rest of the code block that the guard statement appears in.
-
-If that condition is not met, the code inside the else branch is executed. That branch must transfer control to exit the code block that that guard statement appears in. It can do this with a control transfer statement such as return, break, continue, or throw, or it can call a function or method that doesn’t return, such as fatalError().
-
-Using a guard statement for requirements improves the readability of your code, compared to doing the same check with an if statement. It lets you write the code that’s typically executed without wrapping it in an else block, and it lets you keep the code that handles a violated requirement next to the requirement.
-*/
 

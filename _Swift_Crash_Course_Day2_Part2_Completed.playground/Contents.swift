@@ -3,6 +3,8 @@ import UIKit
 # Swift Crash Course
 *A fast paced intro to Swift*
 
+Day 2 Part 2
+
 ## Functions
 
 Every function in Swift has a type, consisting of the function’s parameter types and return type. You can use this type like any other type in Swift, which makes it easy to pass functions as parameters to other functions, and to return functions from functions. Functions can also be written within other functions to encapsulate useful functionality within a nested function scope.

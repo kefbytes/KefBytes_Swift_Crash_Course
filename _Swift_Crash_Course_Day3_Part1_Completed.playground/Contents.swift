@@ -1,4 +1,12 @@
 import UIKit
+/*:
+![Local Image](Cardinal_Logo.png)
+
+# Swift Crash Course
+*A fast paced intro to Swift*
+
+Day 3, Part 1
+*/
 
 /*:
 ## Classes and Structs
