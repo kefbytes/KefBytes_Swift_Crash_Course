@@ -1,6 +1,7 @@
 import UIKit
-
 /*:
+**Conjunction junction, what's your function (al) app doing**
+
 customers is an array of Customer objects. Customer objects contain the following.
 public var enabled = false
 public var name: String
@@ -9,7 +10,6 @@ public var primaryContact: String
 public var domain: String
 */
 let customers = Customers.customers()
-
 /*:
 Below we have four functions, each loops through the customers array and returns an array of specific data about that customer, if the customer is enabled.
 */
@@ -92,6 +92,21 @@ states = getEnabledCustomerFields("state")
 primaryContacts = getEnabledCustomerFields("contact")
 domains = getEnabledCustomerFields("domain")
 
+/*:
+The next step is to eliminate that ugle if else block we just added. To be funcitonal we want to accept a function as a parameter and use that parameter to replace the if else block. The function type should take a Customer and return a String, which will represent the field we want to add to the array.
+*/
+
+// Rewrite our function replacing the fieldName parameter with the function type (customer:Customer) -> String, then replace the if else block with a call to the function passed in and append the result to the array
+func getEnabledCustomerFields(getFieldFunction:Customer -> String) -> [String] {
+    var returnedArray = [String]()
+    for customer in customers {
+        if customer.enabled {
+            let field = getFieldFunction(customer)
+            returnedArray.append(field)
+        }
+    }
+    return returnedArray
+}
 
 
 
