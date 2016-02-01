@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Customer {
+public class Customer {
     
     public var enabled = false
     public var name: String

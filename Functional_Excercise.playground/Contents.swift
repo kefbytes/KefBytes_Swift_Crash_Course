@@ -86,27 +86,46 @@ func getEnabledCustomerFields(fieldName: String) -> [String] {
     return returnedArray
 }
 
-// try calling out new function and passing in the field names
+// try calling our new function and passing in the field names
 names = getEnabledCustomerFields("name")
 states = getEnabledCustomerFields("state")
 primaryContacts = getEnabledCustomerFields("contact")
 domains = getEnabledCustomerFields("domain")
 
 /*:
-The next step is to eliminate that ugle if else block we just added. To be funcitonal we want to accept a function as a parameter and use that parameter to replace the if else block. The function type should take a Customer and return a String, which will represent the field we want to add to the array.
+The next step is to eliminate that ugly if else block we just added. To be funcitonal we want to accept a function as a parameter and use that parameter to replace the if else block. The function type should take a Customer and return a String, which will represent the field we want to add to the array.
 */
+// Let's create a protocol that defines a func named getField
+protocol FieldFunction {
+    func getField(customer: Customer) -> String
+}
 
-// Rewrite our function replacing the fieldName parameter with the function type (customer:Customer) -> String, then replace the if else block with a call to the function passed in and append the result to the array
-func getEnabledCustomerFields(getFieldFunction:Customer -> String) -> [String] {
+// Rewrite our function replacing the fieldName parameter with the protocol type FieldFunction, then replace the if else block with a call to fieldFunction.getField and append the result to the array
+func getEnabledCustomerFields(fieldFunction:FieldFunction) -> [String] {
     var returnedArray = [String]()
     for customer in customers {
         if customer.enabled {
-            let field = getFieldFunction(customer)
-            returnedArray.append(field)
+            returnedArray.append(fieldFunction.getField(customer))
         }
     }
     return returnedArray
 }
 
 
+// Now create a class named CustomerName that implements the FieldFunction protocol, the getField function should return customer.name
+class CustomerName: FieldFunction {
+    func getField(customer: Customer) -> String {
+        return customer.name
+    }
+}
+
+// Create an instance of our CustomerName class
+let customerName = CustomerName()
+
+//Now we can call our getEnabledCustomerFields function passing our instance of CustomerName
+getEnabledCustomerFields(customerName)
+
+/*:
+What's the problem with the way the code stands now? Well to start we would need to create objects for each of the field types we want to return (name, state, domain, contact). And pass it to our getEnabledCustomerFields function call.
+*/
 
