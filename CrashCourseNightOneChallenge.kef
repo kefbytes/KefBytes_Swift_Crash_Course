@@ -1,0 +1,35 @@
+/* Crash Course night 1 challenge */
+
+Items Studied on Night 1
+- variables
+- strings
+- collections
+- anyObject
+- Tuple
+- type alias
+- properties
+- control flows
+- guard
+
+______________________________________________________________________________________
+1.) App should include two views
+	- First view should be a login view
+	- Second view is just a welcome view
+	
+2.) Each view should have it's own view controller
+	- LoginViewController
+	- WelcomeViewController
+	
+3.) Login view should include
+	- two text fields
+		username
+		password
+	- two buttons
+		create login
+		login
+	
+4.) Login view should save credentials to NSUserDefaults when a user selects create login
+
+5.) When a user enters the correct credentials and selects login the Welcome view should appear
+
+6.) Welcome view should include a label that says "Congratulations on logging in correctly"
