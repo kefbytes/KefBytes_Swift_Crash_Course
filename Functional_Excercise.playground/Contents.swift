@@ -1,6 +1,8 @@
 import UIKit
 /*:
-**Conjunction junction, what's your function (al) app doing**
+**Conjunction junction, pass that function**
+
+***Functions as first class citizens***
 
 customers is an array of Customer objects. Customer objects contain the following.
 public var enabled = false
@@ -9,7 +11,9 @@ public var state: String
 public var primaryContact: String
 public var domain: String
 */
-let customers = Customers.customers()
+var customers = Customers.customers()
+
+var test = "Test"
 /*:
 Below we have four functions, each loops through the customers array and returns an array of specific data about that customer, if the customer is enabled.
 */
@@ -270,6 +274,97 @@ getCustomerInfo({
     { (customer: Customer) -> Bool in return !customer.enabled // returns disabled customers
 }
 
+/*:
+*Pure Functions*
 
+Sometimes requirements change over time. We're going to act as if that's the case now. The product owner now wants to have a way to enable or disable customer via a contract. We have added a class named Contract that includes a begin date, an end date and an enabled flag. We updated our Customer object so that now each Customer has a contract associated with them.
+
+Now when we want a customer to be enabled or disabled we will do that on their contract. We have a function here that disables the contract on a customer.
+*/
+public func setContractDisabledForCustomer(customerId: Int) {
+    for (index, value) in customers.enumerate() {
+        if customerId == value.customerId {
+            value.contract.enabled = false
+            customers[index] = value
+        }
+    }
+}
+
+setContractDisabledForCustomer(007)
+for customer in customers {
+    print("\(customer.customerId) enabled = \(customer.contract.enabled)")
+}
+
+/*:
+
+When we look at this function the first thing we think is that this probably won't be the last time we want to get a customer by customerId. So we decide we should make that it's own function.
+*/
+// Create a function named getCustomerById that takes a customerId as an argument, loops over the customers array and returns an array with any matching customers. If no customer with that Id exists return an empty array.
+func getCustomerById(id: Int) -> [Customer] {
+    var customersArray = [Customer] ()
+    for customer in customers {
+        if customer.customerId == id {
+            customersArray.append(customer)
+        }
+    }
+    return customersArray
+}
+
+//We could also extract that for loop into it's own function named filterCustomers. This function will take function of type (Customer) -> Bool. With the Bool indicating if we should use the customer.
+func filterCustomers(filter: (Customer) -> Bool) -> [Customer] {
+    var returnArray = [Customer]()
+    for customer in customers {
+        if filter(customer) {
+            returnArray.append(customer)
+        }
+    }
+    return returnArray
+}
+
+// Now we can refactor our getCustomersById function and rename it getCustomersByIdUsingFilterCustomers. We'll use our new filterCustomers func, removing the for loop.
+func getCustomerByIdUsingFilterCustomers(id: Int) -> [Customer] {
+    return filterCustomers(){
+        (customer: Customer) -> Bool in
+        customer.customerId == id
+    }
+}
+
+let customer007 = getCustomerByIdUsingFilterCustomers(007)
+
+/*:
+To truly make functions pure they should not reference anything out side their function. This means all those functions we created referencing the customers array should be refactored to instead accept that array when called.
+*/
+// Let's start with the filterCustomers function. We on't need to rename it since we are changing the function type. Add an array of Customers as a parameter and access that where we were accessing the customers array directly.
+func filterCustomers(customersIn: [Customer], filter: (Customer) -> Bool) -> [Customer] {
+    var returnArray = [Customer]()
+    for customer in customersIn {
+        if filter(customer) {
+            returnArray.append(customer)
+        }
+    }
+    return returnArray
+}
+
+// The refactor getCustomersById the same way.
+func getCustomersById(customersIn: [Customer], id: Int) -> [Customer] {
+    var customersArray = [Customer] ()
+    for customer in customersIn {
+        if customer.customerId == id {
+            customersArray.append(customer)
+        }
+    }
+    return customersArray
+}
+
+// Now do the same for setContractDisabledForCustomer, we will need to add a return type of [Customer] since we will now be returning a modified array and not modiying the original array.
+public func setContractDisabledForCustomer(var customersIn: [Customer], customerId: Int) -> [Customer] {
+    for (index, value) in customersIn.enumerate() {
+        if customerId == value.customerId {
+            value.contract.enabled = false
+            customersIn[index] = value
+        }
+    }
+    return customersIn
+}
 
 
