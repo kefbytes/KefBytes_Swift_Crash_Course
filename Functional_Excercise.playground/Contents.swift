@@ -368,10 +368,10 @@ public func setContractDisabledForCustomer(var customersIn: [Customer], customer
 let customer007 = getCustomerByIdUsingFilterCustomers(customers, id: 007)
 
 // forEach func
-func forEach(customersIn: [Customer], call: (Customer) -> Void ) -> [Customer] {
+func forEach(customersIn: [Customer], changeValue: (Customer) -> Void ) -> [Customer] {
     var returnArray = [Customer]()
     for customer in customersIn {
-        call(customer)
+        changeValue(customer)
         returnArray.append(customer)
     }
     return returnArray
@@ -406,3 +406,4 @@ print("________________________________________")
 for customer in enabledArray {
     print("\(customer.customerId) enabled = \(customer.contract.enabled)")
 }
+
