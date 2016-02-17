@@ -2,7 +2,7 @@
 
 Starting app https://github.com/kefbytes/CrashCourseNightOneChallenge
 
-This is an app that we will be using thorughout the course and building upon. 
+This is an app that we will be using throughout the course and building upon. 
 For tonight it starts very simple. We have a Storyboard with a single view, the Login View. This login view is connected to a view controller named LoginViewController.
 
 In this login view we have the following elements
@@ -41,7 +41,7 @@ I. Implement login functionality.
 			• if credentials match print "Login Successful" to the console
 	
 	NSUserDefaults		
-	We are going to user the NSUserDefaults to store our username and password. You get access to the user defaults by calling 
+	We are going to user the NSUserDefaults to store our username and password. This is not a secure method for storing important info and you would not want to use it for this kind of info in a production app, but it works for our purposes here. You get access to the user defaults by calling 
 
 		NSUserDefaults.standardUserDefaults().
 	
