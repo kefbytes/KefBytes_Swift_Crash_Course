@@ -1,0 +1,91 @@
+/* Crash Course night 2 challenge */
+
+Starting app https://github.com/kefbytes/CrashCourseNightTwoChallenge
+
+This app has been updated from the NightOneChallenge with these changes:
+	
+	Added CocoaPods to it and brought in a KeychainWrapper and a Json Frameworks, we'll be using the KeychainWrapper tonight and the Json framework next time. After adding CocoaPods we now need to use the xcworkspace file when opening the project instead of the xcodeproj file.
+	
+	Delete button added to the login view with an outlet and an action hooked up to it. The delete button is hidden by default.
+
+
+In this challenge we are going to work on creating functions, using optionals and closures and maybe through in an enum for good measure. We'll be moving/creating the login functionality to the LoginViewModel class.
+
+We'll need to import KefKeychain to LoginViewModel. KefKeychain is a wrapper that makes it easy to use the keychain.
+
+		To add something we just use:
+			KeychainWrapper.set("key", value: "value") returns a Bool
+		To delete something we use:
+			KeychainWrapper.delete("key") returns a Bool
+		To retrieve a value we use:
+			KeychainWrapper.get("key")
+			* retrieving from the keychain always returns an optional
+
+
+I. Add three functions to the LoginViewModel class. Each of these functions should be a type method, which is just a function that belongs to the class and not a particular instance of the class. Use the static keyword before the func keyword when declaring a type method.
+
+		
+	1.) createLogin
+		- takes two parameters, userId and password both Strings and returns a Bool
+		- save the username to userdefaults
+		- save the password to the keychain and return result 
+		- save "userIDExists" Bool to userdefaults as True
+		
+		
+	2.) loginWithUsernamePassword
+		- takes two parameters, username and password both Strings and returns a Bool
+		- retrieves username from userdefaults
+		- retrieves password from keychain
+		- compares retrieved values to passed in parameters
+			if values are same return true
+			else return false
+		
+	3.) deleteLogin
+		- takes no parameters and returns a Bool
+		- removes username from userdefaults
+		- save "userIDExists" Bool to userdefaults as false
+		- delete password from keychain and return result
+		
+
+II. Refactor LoginViewController to make use of the new functions in LoginViewModel.
+
+	1.) refactor loginAction	
+		- if loginExist call LoginViewModel.loginWithUsernamePassword
+		- else call LoginViewModel.createLogin
+			- set deleteButton.hidden to false
+	
+	2.) in deleteAction
+		- call LoginViewModel.deleteLogin
+		- set deleteButton.hidden to true
+		- clear usernameTextField & passwordtextField
+		- set title of loginButton to "Create Login"
+		
+III. Create an enum named LoginError that should have four cases
+	
+	- Create
+	- login
+	- Delete 
+	- Touch
+	
+IV. Create a function in LoginViewController named showAlertController. This function should take a LoginError as its parameter and not return anything.The function should do the following.
+
+	- declare a String that will hold a message to display to the user.
+	- switch on the LoginError and set the message String according to what enum case was passed in. The messages should be this.
+		
+		Create = "Failed to create login, check credentials and try again"
+        Delete = "Failed to delete login, please try again"
+        Login = "Failed to login, check credentials and try again"
+        Touch = "TouchID failed, please make sure you have touchID enabled and try again"
+        
+    - present an alert view with the appropriate error message.
+    
+    	You can present an alert view like this:
+    	
+		let alertController = UIAlertController(title: nil, message: alertMessage, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        presentViewController(alertController, animated: true, completion: nil)
+        
+V. Call the showAlertController function anywhere an error might occur, passiing in the appropriate enum case. The touch case won't be used yet as we have not yet implemented touchID functionality.
+
+
+
