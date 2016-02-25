@@ -17,7 +17,15 @@ Optionals will always have a type.
 
 The swift language makes heavy use of optionals, many functions return an optional.
 */
+let possibleString: String? = "An optional string."
+let forcedString = possibleString // requires an exclamation mark
 
+let hannahName: String? = "Hannah"
+let unwrappedName = hannahName
+
+unwrappedName!
+
+var test = "Test"
 /*:
 You declare an optional by adding a ? after the type in the declaration. In the case of the example below this would be an optional String.
 

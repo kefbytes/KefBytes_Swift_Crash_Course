@@ -1,0 +1,68 @@
+/* Swift Crash Course 1 Hour Version */
+
+// Day 1
+	variables
+		var
+		let
+	Strings & Collections
+		String
+			String Interpolation
+		Array
+		Set
+		Dictionary
+		AnyObject
+		Tuple
+		Type Alias
+		Properties
+			Stored Properties
+			Lazy Properties
+			Computed Properties
+			Property Observers
+			Global Properties
+			Local Properties
+			Type Properties
+		Control Flow
+			for
+			for in
+			while
+			repeat while
+			if 
+			switch
+		Transfer Statements
+			continue
+			break
+		guard
+		
+// Day 2
+	optionals
+		optional binding
+		ImplicitlyUnwrappedOptional
+		optional chaining
+	enumerations
+		associated values
+		raw values
+	functions
+		function Types
+		variadic parameters
+		in-out parameters
+	closures
+		closure expressions
+		trailing closures
+	
+// Day 3
+	classes & structs
+		class
+		struct
+	extensions
+	generics
+	protocols
+	protocol extensions
+	error handling
+		Propagating Errors
+		do catch
+		converting to optionals
+		disabling error Propagating
+		defer
+		
+
+

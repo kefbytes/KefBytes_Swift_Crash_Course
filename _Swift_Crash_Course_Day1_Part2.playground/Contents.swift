@@ -255,7 +255,6 @@ struct Button {
             newPoint.xCoord = newValue.xCoord - (screen.width / 2)
             newPoint.yCoord = newValue.yCoord - (screen.height / 2)
         }
-        
     }
 }
 

@@ -139,8 +139,8 @@ statements
 // Write the same loop we did above but using repeat while this time. Start by resetting our counter to 0
 counter = 0
 repeat {
-counter++
-print("counter: \(counter)")
+    counter++
+    print("counter: \(counter)")
 } while counter != condition
 
 /*: -------------------------------------------------------------------------------------------------
