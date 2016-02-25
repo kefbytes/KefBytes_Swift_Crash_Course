@@ -9,7 +9,7 @@ This app has been updated from the NightOneChallenge with these changes:
 	Delete button added to the login view with an outlet and an action hooked up to it. The delete button is hidden by default.
 
 
-In this challenge we are going to work on creating functions, using optionals and closures and maybe through in an enum for good measure. We'll be moving/creating the login functionality to the LoginViewModel class.
+In this challenge we are going to focus on creating functions and using an enum. We'll be moving/creating the login functionality to the LoginViewModel class.
 
 We'll need to import KefKeychain to LoginViewModel. KefKeychain is a wrapper that makes it easy to use the keychain.
 
