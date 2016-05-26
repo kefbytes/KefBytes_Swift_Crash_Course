@@ -65,7 +65,7 @@ II. Create array of cities that we will use later with our weather updates
 	1.) When a user presses the addCityButton we want to add the text entered into the addCityTextField to an array that will be saved in NSUserDefaults.
 		
 	- print the cities in the array one at a time when the view loads
-		Requirement -> Use a guard statement when checking for the citiesArray in NSUserDefaults during view load
+		Requirement -> Use Optional Binding when checking for the citiesArray in NSUserDefaults
 	- print the cities in the array again after a city is added.
 	
 	** hint: when retrieving an array of Strings from NSUserDefaults you will need to use this syntax to convert from anyObject to a String array.
