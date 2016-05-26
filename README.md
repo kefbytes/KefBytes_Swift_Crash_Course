@@ -172,6 +172,7 @@ The Stanford Lectures can be found on iTunes. Go to iTunes U and search for "dev
 	<li><a href="http://natashatherobot.com/swift-2-error-handling/">Natasha - TestDriving Error Handling</a></li>
 	<li><a href="http://natashatherobot.com/swift-guard-better-than-if/">Natasha - Why guard is better than if</a></li>
 	<li><a href="http://www.thomashanning.com/error-handling-in-swift-2-0/">Thomas Hanning - Error Handling in Swift</a></li>
+	<li><a href="http://bartjacobs.com/error-handling-in-swift-with-the-try-keyword/">Bart Jacobs - try, try? and try!
 </ul>
 </li>
 	<li>Using Swift with Objective C
