@@ -312,67 +312,70 @@ getCustomerInfo({
 /*:
 ## Pure Functions ##
 
-> Sometimes requirements change over time. We're going to act as if that's the case now. The product owner now wants to have a way to enable or disable customer via a contract. We have added a class named Contract that includes a begin date, an end date and an enabled flag. We updated our Customer object so that now each Customer has a contract associated with them.
+> Sometimes requirements change over time. We're going to act as if that's the case now. The product owner now wants to have a way to enable or disable a customer via a contract. We have added a class named Contract that includes a begin date, an end date and an enabled flag. We updated our Customer object so that now each Customer has a contract associated with them.
 
-> Now when we want a customer to be enabled or disabled we will do that on their contract. We have a function here that disables the contract on a customer.
+> Now when we want a customer to be enabled or disabled we will do so on their contract using the enabled flag. We have a function here that disables the contract on a customer.
 */
+
 public func setContractDisabledForCustomer(customerId: Int) {
-    for (index, value) in customers.enumerate() {
-        if customerId == value.customerId {
-            value.contract.enabled = false
-            customers[index] = value
+    for (index, customer) in customers.enumerate() {
+        if customerId == customer.customerId {
+            customer.contract.enabled = false
+            customers[index] = customer
         }
     }
 }
 
-setContractDisabledForCustomer(007)
-
-customers
+setContractDisabledForCustomer(2)
 
 for customer in customers {
     print("\(customer.customerId) enabled = \(customer.contract.enabled)")
 }
-
 /*:
-> When we look at this function the first thing we think is that this probably won't be the last time we want to get a customer by customerId. So we decide we should make that it's own function.
+> When we look at this function the first thing we think is that this probably won't be the only instance iin which we want to get a customer by customerId. So we decide to pull that out into it's own function.
 */
-//// Create a function named getCustomerById that takes a customerId as an argument, loops over the customers array and returns an array with any matching customers. If no customer with that Id exists return an empty array.
-//func getCustomerById(id: Int) -> [Customer] {
-//    var customersArray = [Customer] ()
-//    for customer in customers {
-//        if customer.customerId == id {
-//            customersArray.append(customer)
-//        }
-//    }
-//    return customersArray
-//}
-//
-////We could also extract that for loop into it's own function named filterCustomers. This function will take function of type (Customer) -> Bool. With the Bool indicating if we should use the customer.
-//func filterCustomers(filter: (Customer) -> Bool) -> [Customer] {
-//    var returnArray = [Customer]()
-//    for customer in customers {
-//        if filter(customer) {
-//            returnArray.append(customer)
-//        }
-//    }
-//    return returnArray
-//}
-//
-//// Now we can refactor our getCustomersById function and rename it getCustomersByIdUsingFilterCustomers. We'll use our new filterCustomers func, removing the for loop.
-//func getCustomerByIdUsingFilterCustomers(id: Int) -> [Customer] {
-//    return filterCustomers(){
-//        (customer: Customer) -> Bool in
-//        customer.customerId == id
-//    }
-//}
-//
-//let customer007 = getCustomerByIdUsingFilterCustomers(007)
+// Create a function named getCustomerById that takes a customerId as an argument, loops over the customers array and returns an array with any matching customers. If no customer with that Id exists return an empty array.
+func getCustomerById(id: Int) -> [Customer] {
+    var customersArray = [Customer] ()
+    for customer in customers {
+        if customer.customerId == id {
+            customersArray.append(customer)
+        }
+    }
+    return customersArray
+}
+
+//We could also extract that for loop into it's own function named filterCustomers. This function will take function of type (Customer) -> Bool. With the Bool indicating if we should use the customer. This will allow us to filter customers by any criteria and not just customer ID.
+func filterCustomers(filter: (Customer) -> Bool) -> [Customer] {
+    var returnArray = [Customer]()
+    for customer in customers {
+        if filter(customer) {
+            returnArray.append(customer)
+        }
+    }
+    return returnArray
+}
+
+// Now we can refactor our getCustomersById function and rename it getCustomersByIdUsingFilterCustomers. We'll use our new filterCustomers func, removing the for loop.
+func getCustomerByIdUsingFilterCustomers(id: Int) -> [Customer] {
+    return filterCustomers(){
+        (customer: Customer) -> Bool in
+        customer.customerId == id
+    }
+}
+
+let customer007 = getCustomerByIdUsingFilterCustomers(007)
 
 /*:
 > To truly make functions pure they should not reference anything out side their function. This means all those functions we created referencing the customers array should be refactored to instead accept that array when called.
 */
-// Let's start with the filterCustomers function. We on't need to rename it since we are changing the function type. Add an array of Customers as a parameter and access that where we were accessing the customers array directly.
+
+// To print flow, uncomment print line below and ones in each function and comment let customer006 line
+//print("------------------------setContractOnCustomer flow-----------------------------------")
+
+// Let's start with the filterCustomers function. We don't need to rename it since we are changing the function type. Add an array of Customers as a parameter and access that where we were accessing the customers array directly.
 func filterCustomers(customersIn: [Customer], filter: (Customer) -> Bool) -> [Customer] {
+//    print("filterCustomers")
     var returnArray = [Customer]()
     for customer in customersIn {
         if filter(customer) {
@@ -382,32 +385,39 @@ func filterCustomers(customersIn: [Customer], filter: (Customer) -> Bool) -> [Cu
     return returnArray
 }
 
-// Then refactor getCustomerByIdUsingFilterCustomers, it needs to accept a customer array which it will in turn pass to filterCustomers
-func getCustomerByIdUsingFilterCustomers(customersIn: [Customer], id: Int) -> [Customer] {
+// Then refactor getCustomerByIdUsingFilterCustomers, it needs to accept a customer array which it will in turn pass to filterCustomers. Let's also change so we can find an array of customers. Change the second parameter to be an array of Ints [Int].
+func getCustomerByIdUsingFilterCustomers(customersIn: [Customer], ids: [Int]) -> [Customer] {
+//    print("getCustomerByIdUsingFilterCustomers")
     return filterCustomers(customersIn){
         (customer: Customer) -> Bool in
-        customer.customerId == id
+        if ids.contains(customer.customerId) {
+            return true
+        } else {
+            return false
+        }
     }
 }
 
 
 // Now do the same for setContractDisabledForCustomer, we will need to add a return type of [Customer] since we will now be returning a modified array and not modiying the original array.
-public func setContractDisabledForCustomer(customersIn: [Customer], customerId: Int) -> [Customer] {
+func setContractDisabledForCustomer(customersIn: [Customer], customerId: Int) -> [Customer] {
     var customerArray = customersIn
-    for (index, value) in customersIn.enumerate() {
-        if customerId == value.customerId {
-            value.contract.enabled = false
-            customerArray[index] = value
+    for (index, customer) in customersIn.enumerate() {
+        if customerId == customer.customerId {
+            customer.contract.enabled = false
+            customerArray[index] = customer
         }
     }
     return customerArray
 }
 
-let customer007 = getCustomerByIdUsingFilterCustomers(customers, id: 007)
+let customer006 = getCustomerByIdUsingFilterCustomers(customers, ids: [006])
 
-// forEach func
-func forEach(customersIn: [Customer], changeValue: (Customer) -> Void ) -> [Customer] {
-    var returnArray = [Customer]()
+// create a func name getModifiedCustomer that takes a [Customer] and a func with type (Customer) -> Void, it returns a [Customer]
+// This function returns an array of modified customers
+func getModifiedCustomer(customersIn: [Customer], changeValue: (Customer) -> Void ) -> [Customer] {
+//    print("getModifiedCustomer")
+    var returnArray = [Customer] ()
     for customer in customersIn {
         changeValue(customer)
         returnArray.append(customer)
@@ -415,33 +425,30 @@ func forEach(customersIn: [Customer], changeValue: (Customer) -> Void ) -> [Cust
     return returnArray
 }
 
-forEach(getCustomerByIdUsingFilterCustomers(customers, id: 007)) {
-    (customer: Customer) -> Void in
-    customer.contract.enabled = true
-}
 
-print("________________________________________")
-for customer in customers {
-    print("\(customer.customerId) enabled = \(customer.contract.enabled)")
-}
-
-// refactor setContractDisabledForCustomer renaming it setContractOnCustomer. We'll use our new forEach function and return an array of disabled customers so that our BA can have a list of changed Customers. We want this function to be used whether we are enabling or disabling a customer contract, so we need to add a Bool parameter that will be used to set the contract.
-public func setContractDisabledForCustomerWithForEach(customersIn: [Customer], customerId: Int, contractStatus: Bool) -> [Customer] {
-    return forEach(getCustomerByIdUsingFilterCustomers(customersIn, id: customerId)) {
+// refactor setContractDisabledForCustomer renaming it setContractOnCustomer. We'll use our new getModifiedCustomer function and return an array of disabled customers so that our BA can have a list of changed Customers. We want this function to be used whether we are enabling or disabling a customer contract, so we need to add a Bool parameter that will be used to set the contract.
+func setContractOnCustomer(customersIn: [Customer], customerId: [Int], contractStatus: Bool) -> [Customer] {
+//    print("setContractOnCustomer")
+    return getModifiedCustomer(getCustomerByIdUsingFilterCustomers(customersIn, ids: customerId)) {
         (customer: Customer) -> Void in
         customer.contract.enabled = contractStatus
     }
 }
 
-let disabledCustomersArray = setContractDisabledForCustomerWithForEach(customers, customerId: 007, contractStatus: false)
-print("________________________________________")
+
+// Now we can set the contract on a specific customer, get an array returned with that customer, loop throughh it and print the the results
+let disabledCustomersArray = setContractOnCustomer(customers, customerId: [007, 001], contractStatus: false)
+print("_______________modified disabled accounts___________________")
 for customer in disabledCustomersArray {
     print("\(customer.customerId) enabled = \(customer.contract.enabled)")
 }
 
-let enabledArray = setContractDisabledForCustomerWithForEach(customers, customerId: 008, contractStatus: true)
-print("________________________________________")
+let enabledArray = setContractOnCustomer(customers, customerId: [008, 005, 001], contractStatus: true)
+print("_______________modified enabled accounts___________________")
 for customer in enabledArray {
     print("\(customer.customerId) enabled = \(customer.contract.enabled)")
 }
+
+
+
 
