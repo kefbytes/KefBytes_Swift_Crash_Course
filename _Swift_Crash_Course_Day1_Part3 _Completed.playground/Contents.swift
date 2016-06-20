@@ -107,7 +107,7 @@ for index in 1...5 {
 
 A while loop performs a set of statements until a condition becomes false. These kinds of loops are best used when the number of iterations is not known before the first iteration begins.
 
-`while (condition) {`
+`while condition {`
 
 statements
 

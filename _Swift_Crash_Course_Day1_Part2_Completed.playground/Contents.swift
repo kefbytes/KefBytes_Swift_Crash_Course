@@ -46,7 +46,7 @@ for element in songs  {
     print(song.name)
 }
 
-// A shorter version
+// Can you create a shorter by casting to the type Song in the for loop declaration?
 
 for song in songs as! [Song] {
     print(song.artist)
@@ -146,11 +146,11 @@ So in this case  (String, Int) -> Void, a function would take a String and an In
 */
 // create a typealias named Response that defines a function definition of (String) -> Void
 
-typealias CoreDataManagerCompletionHandler = (result: Bool, failureError: NSError?) -> Void
+typealias Response = (result: Bool, failureError: NSError?) -> Void
 
 // Now we can use the Response typealias anywhere a function definition can be used
 
-func setup(completion: CoreDataManagerCompletionHandler) {
+func setup(completion: Response) {
     
 }
 
@@ -262,7 +262,7 @@ account.accountName
 
 // try changing the value of the var property
 
-// account.accountName = "adminUser"
+// account.accountPassword = "adminUser"
 /*:
 **Computed Properties**
 
@@ -327,7 +327,7 @@ struct Button2 {
     }
 }
 
-//simplified version - must have implicit type, if no setter we can remove the get keyword
+//simplified version - must have explicit type, if no setter we can remove the get keyword
 struct Button3 {
     var newPoint:Point
     
@@ -390,7 +390,7 @@ You define type properties with the static keyword.
 static var storedTypeProperty = "Some value."
 }`
 */
-// add a type property to your struct
+// add a type property to your struct named loginAPI
 
 /*:
 You access type properties with dot notation.

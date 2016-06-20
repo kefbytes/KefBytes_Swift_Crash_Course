@@ -1,21 +1,24 @@
 import UIKit
-/*:
-**Conjunction junction, pass that function**
-
-***Functions as first class citizens***
-
-customers is an array of Customer objects. Customer objects contain the following.
-public var enabled = false
-public var name: String
-public var state: String
-public var primaryContact: String
-public var domain: String
-*/
+//: ## Conjunction junction, pass that function
+//: ----
 var customers = Customers.customers()
-
-var test = "Test"
 /*:
-Below we have four functions, each loops through the customers array and returns an array of specific data about that customer, if the customer is enabled.
+> customers is an array of Customer objects. Customer objects contain the following.
+
+```public var enabled = false```
+ 
+```public var name: String```
+ 
+```public var state: String```
+ 
+```public var primaryContact: String```
+ 
+```public var domain: String```
+ 
+*/
+customers
+/*:
+> Below we have four functions, each loops through the customers array and returns an array of specific data about that customer, if the customer is enabled.
 */
 func getEnabledCustomerNames() -> [String] {
     var returnedArray = [String]()
@@ -67,21 +70,22 @@ var domains = getEnabledCustomerDomains()
 
 
 /*:
-Our task is to refactor the four methods above using a more functional style of programming. In the process we will conforming to the DRY principle.
+> Our task is to refactor the four methods above using a more functional style of programming. In the process we will conforming to the DRY principle.
 */
 
-// Start by creating a function that takes a single String parameter named fieldName and uses a long if else block to build the array.
+// Start by creating a function named getEnabledCustomerFields that takes a single String parameter named fieldName and uses an if else block to build an array[String] making use of our customers array and the fieldName passed in and then returns the array we built.
 func getEnabledCustomerFields(fieldName: String) -> [String] {
     var returnedArray = [String]()
     for customer in customers {
         if customer.enabled {
-            if fieldName == "name" {
+//            if fieldName == "name" {
+            if fieldName == Constants.nameField {
                returnedArray.append(customer.name)
-            } else if fieldName == "state" {
+            } else if fieldName == Constants.stateField {
                 returnedArray.append(customer.state)
-            } else if fieldName == "contact" {
+            } else if fieldName == Constants.contactField {
                 returnedArray.append(customer.primaryContact)
-            } else if fieldName == "domain" {
+            } else if fieldName == Constants.domainField {
                 returnedArray.append(customer.domain)
             }
 
@@ -91,21 +95,21 @@ func getEnabledCustomerFields(fieldName: String) -> [String] {
 }
 
 // try calling our new function and passing in the field names
-names = getEnabledCustomerFields("name")
-states = getEnabledCustomerFields("state")
-primaryContacts = getEnabledCustomerFields("contact")
-domains = getEnabledCustomerFields("domain")
+names = getEnabledCustomerFields(Constants.nameField)
+states = getEnabledCustomerFields(Constants.stateField)
+primaryContacts = getEnabledCustomerFields(Constants.contactField)
+domains = getEnabledCustomerFields(Constants.domainField)
 
 /*:
-The next step is to eliminate that ugly if else block we just added. To be funcitonal we want to accept a function as a parameter and use that parameter to replace the if else block. The function type should take a Customer and return a String, which will represent the field we want to add to the array.
+> The next step is to eliminate that ugly if else block we just added. To be funcitonal we want to accept a function as a parameter and use that parameter to replace the if else block. The function type should take a Customer and return a String, which will represent the field we want to add to the array.
 */
-// Let's create a protocol that defines a func named getField
-protocol FieldFunction {
+// Let's create a protocol named FieldsDelegate that defines a func named getField
+protocol FieldsDelegate {
     func getField(customer: Customer) -> String
 }
 
-// Rewrite our function replacing the fieldName parameter with the protocol type FieldFunction, then replace the if else block with a call to fieldFunction.getField and append the result to the array
-func getEnabledCustomerFields(fieldFunction:FieldFunction) -> [String] {
+// Rewrite our function replacing the fieldName parameter with the protocol type FieldFunction, then replace the if else block with a call to fieldFunction.getField passing in the urrent customer and appending the result to the array before returning the array
+func getEnabledCustomerFields(fieldFunction:FieldsDelegate) -> [String] {
     var returnedArray = [String]()
     for customer in customers {
         if customer.enabled {
@@ -117,7 +121,7 @@ func getEnabledCustomerFields(fieldFunction:FieldFunction) -> [String] {
 
 
 // Now create a class named CustomerName that implements the FieldFunction protocol, the getField function should return customer.name
-class CustomerName: FieldFunction {
+class CustomerName: FieldsDelegate {
     func getField(customer: Customer) -> String {
         return customer.name
     }
@@ -129,10 +133,22 @@ let customerName = CustomerName()
 //Now we can call our getEnabledCustomerFields function passing our instance of CustomerName
 getEnabledCustomerFields(customerName)
 
+
+// We could do the same thing with each of the fields, here's the contactField example
+class CustomerContact: FieldsDelegate {
+    func getField(customer: Customer) -> String {
+        return customer.primaryContact
+    }
+}
+
+let customerContact = CustomerContact()
+
+getEnabledCustomerFields(customerContact)
+
 /*:
-What's the problem with the way the code stands now? Well to start we would need to create objects for each of the field types we want to return (name, state, domain, contact). And pass it to our getEnabledCustomerFields function call.
+> What's the problem with this approach? Well to start we would need to create objects for each of the field types we want to return (name, state, domain, contact). And pass it to our getEnabledCustomerFields function call.
 */
-// Let's change our getEnabledCustomerFields function, renaming it getEnabledCustomerFieldsFromFunction, the parameter will be a function of type (Customer) -> String. We'll call this function passing the customer from the current iteration of the loop
+// Let's change our getEnabledCustomerFields function, renaming it getEnabledCustomerFieldsFromFunction, the parameter will be a function named fieldFunction with type (Customer) -> String. We'll call this function in our for loop passing the current customer, appending the array and then returning it.
 func getEnabledCustomerFieldsFromFunction(fieldFunction: (Customer) -> String) -> [String] {
     var returnedArray = [String]()
     for customer in customers {
@@ -143,7 +159,7 @@ func getEnabledCustomerFieldsFromFunction(fieldFunction: (Customer) -> String) -
     return returnedArray
 }
 
-// Now instead of creating a class we can create functions and pass them. See how we are moving away from object oriented and more towards functional?
+// Now instead of creating a class we can create functions and pass them. We are moving away from object oriented and more towards functional thinking.
 func getCustomerState(customer: Customer) -> String {
     return customer.state
 }
@@ -151,14 +167,22 @@ func getCustomerState(customer: Customer) -> String {
 // Now just call our getEnabledCustomerFieldsFromFunction passing in the function that we want to use.
 getEnabledCustomerFieldsFromFunction(getCustomerState)
 
+// And of course we could do the same with the other fields just by creating those functions and passing them.
+
+func getCustomerDomain(customer: Customer) -> String {
+    return customer.domain
+}
+
+getEnabledCustomerFieldsFromFunction(getCustomerDomain)
+
 /*:
-But hold on there, we're still creating a bunch of functions. Why do we need to do that? Well we don't, why not create the function on the fly when we are calling getEnabledCustomerFieldsFromFunction() and pass it in as a closure?
+> But hold on there, we're still creating a bunch of functions. Why do we need to do that? Well we don't, why not create the function on the fly when we are calling getEnabledCustomerFieldsFromFunction() and pass it in as a closure?
 
-In a closure you omit the curly braces and insert the 'in' keyword before the body of the function. The closure itself is not named and only includes the function type and body. So the syntax is something like this 
+> In a closure you omit the curly braces and insert the 'in' keyword before the body of the function. The closure itself is not named and only includes the function type and body. So the syntax is something like this
 
-functionType in body
+```functionType in body```
 
-Where functionType is any type you would like that may or may not include parameters and a return type, and body is what ever actions/logic that function is supposed to perform.
+> Where functionType is any type that may or may not include parameters and a return type, and body is whatever actions/logic that function is supposed to perform.
 */
 // Call the getEnabledCustomerFieldsFromFunction function passing in a closure that is the function type and body of the getCustomerState function.
 getEnabledCustomerFieldsFromFunction({
@@ -171,9 +195,9 @@ getEnabledCustomerFieldsFromFunction(){
 }
 
 /*:
-Now anytime you want to call the getEnabledCustomerFieldsFromFunction function you just pass in the closure you want to use.
+> Now anytime you want to call the getEnabledCustomerFieldsFromFunction function you just pass in the closure you want to use.
 */
-// We've gotten the customer states array not get the array for customer name, primary contact and domain.
+// We've gotten the customer states array now get the array for customer name, primary contact and domain.
 getEnabledCustomerFieldsFromFunction(){
     (customer: Customer) -> String in return customer.name
 }
@@ -187,26 +211,37 @@ getEnabledCustomerFieldsFromFunction(){
 }
 
 /*: 
-So far so good, we are getting functional. Now let's shift gears slightly. What if we wanted to get a list/array of all customers that are enabled? The actual customer objects not just a field from the object?
+> So far so good, we are getting functional. Now let's shift gears slightly. What if we wanted to get a list/array of all customers that are enabled? The actual customer objects not just a field from the object?
 Well we'd have to write a second function similar to our  getEnabledCustomerFieldsFromFunction function. But instead of filling our array with field values we'd be filling them with customer objects.
 */
 // Our function would look something like this
-func getEnabledCustomerInfo(fieldFunction: (Customer) -> Customer) -> [Customer] {
+//func getEnabledCustomerInfo(fieldFunction: (Customer) -> Customer) -> [Customer] {
+//    var returnedArray = [Customer]()
+//    for customer in customers {
+//        if customer.enabled {
+//            returnedArray.append(fieldFunction(customer))
+//        }
+//    }
+//    return returnedArray
+//}
+
+func getEnabledCustomerInfo() -> [Customer] {
     var returnedArray = [Customer]()
     for customer in customers {
         if customer.enabled {
-            returnedArray.append(fieldFunction(customer))
+            returnedArray.append(customer)
         }
     }
     return returnedArray
 }
 
+getEnabledCustomerInfo()
 /*:
-If we look closely we can see that this function is very similar to our other function. Wouldn't it be great if we could use the same function for both cases?
+> If we look closely we can see that this function is similar to our other function, just with no parameters. Wouldn't it be great if we could use the same function for both cases ([String] and [Customer])?
 
-This can be accomplished easily using generics. We just define a generic parameter type and use that as a placeholder to replace the return type of the parameter function, the return type of our getEnabledCustomers function and the type of array we want to return.
+> This can be accomplished easily using generics. We just define a generic parameter type and use that as a placeholder to replace the return type of the parameter function, the return type of our getEnabledCustomers function and the type of array we want to return.
 */
-// Redo our getEnabledCustomers function using generics. Set a generic parameter type  <someParameterType> before the parameter list. Then use it as a placeholder for the rest of the function.
+// Redo our getEnabledCustomers function using generics (we'll need to add the parameters back in). Set a generic parameter type  <someParameterType> before the parameter list. Then use it as a placeholder for the rest of the function.
 func getEnabledCustomerInfo<T>(fieldFunction: (Customer) -> T) -> [T] {
     var returnedArray = [T]()
     for customer in customers {
@@ -240,9 +275,9 @@ getEnabledCustomerInfo(){
 }
 
 /*:
-Pretty exciting! Now we have one function that returns either a value or object and we just call that function passing in a closure.
+> Pretty exciting! Now we have one function that returns either a value or object and we just call that function passing in a closure.
 
-What if we wanted to prepend or postfix something on one of the field values we are returning? Simple just do it in the closure you are passing.
+> What if we wanted to prepend or postfix something on one of the field values we are returning? Simple just do it in the closure you are passing.
 */
 // Call or getEnabledCustomers function and return an array of states, but postfix the state with a colon and then USA. Example: NC:USA
 getEnabledCustomerInfo(){
@@ -250,7 +285,7 @@ getEnabledCustomerInfo(){
 }
 
 /*:
-Let's make one last adjustment. What if we wanted to get all the same information we already are getting but for customers who are disabled? Would we right a second function? Of course not. We'd pass in a function that tested whether or not the customer was enabled or disabled and return the appropriate list.
+> Let's make one last adjustment. What if we wanted to get all the same information we already are getting but for customers who are disabled? Would we write a second function? Of course not. We'd pass in a function that tested whether or not the customer was enabled or disabled and return the appropriate list.
 */
 // Let's change our getEnabledCustomerInfo again and rename it getCustomerInfo. We want to add a second parameter named isEnabled that is a function type of (Customer) -> Bool. Then we replace our if customer.enabled check with a call to the isEnabled function.
 func getCustomerInfo<T>(fieldFunction: (Customer) -> T, isEnabled: (Customer) -> Bool) -> [T] {
@@ -266,7 +301,7 @@ func getCustomerInfo<T>(fieldFunction: (Customer) -> T, isEnabled: (Customer) ->
 // Now when we call the getCustomerInfo function we need to pass a closure specifying if we want enabled or disabled customers. keep in mind that only the last closure can be a trailing closure.
 getCustomerInfo({
     (customer: Customer) -> String in return customer.name})
-    { (customer: Customer) -> Bool in return customer.enabled // returns enalbled customers
+    { (customer: Customer) -> Bool in return customer.enabled // returns enabled customers
 }
 
 getCustomerInfo({
@@ -275,11 +310,11 @@ getCustomerInfo({
 }
 
 /*:
-*Pure Functions*
+## Pure Functions ##
 
-Sometimes requirements change over time. We're going to act as if that's the case now. The product owner now wants to have a way to enable or disable customer via a contract. We have added a class named Contract that includes a begin date, an end date and an enabled flag. We updated our Customer object so that now each Customer has a contract associated with them.
+> Sometimes requirements change over time. We're going to act as if that's the case now. The product owner now wants to have a way to enable or disable customer via a contract. We have added a class named Contract that includes a begin date, an end date and an enabled flag. We updated our Customer object so that now each Customer has a contract associated with them.
 
-Now when we want a customer to be enabled or disabled we will do that on their contract. We have a function here that disables the contract on a customer.
+> Now when we want a customer to be enabled or disabled we will do that on their contract. We have a function here that disables the contract on a customer.
 */
 public func setContractDisabledForCustomer(customerId: Int) {
     for (index, value) in customers.enumerate() {
@@ -291,13 +326,15 @@ public func setContractDisabledForCustomer(customerId: Int) {
 }
 
 setContractDisabledForCustomer(007)
+
+customers
+
 for customer in customers {
     print("\(customer.customerId) enabled = \(customer.contract.enabled)")
 }
 
 /*:
-
-When we look at this function the first thing we think is that this probably won't be the last time we want to get a customer by customerId. So we decide we should make that it's own function.
+> When we look at this function the first thing we think is that this probably won't be the last time we want to get a customer by customerId. So we decide we should make that it's own function.
 */
 //// Create a function named getCustomerById that takes a customerId as an argument, loops over the customers array and returns an array with any matching customers. If no customer with that Id exists return an empty array.
 //func getCustomerById(id: Int) -> [Customer] {
@@ -332,7 +369,7 @@ When we look at this function the first thing we think is that this probably won
 //let customer007 = getCustomerByIdUsingFilterCustomers(007)
 
 /*:
-To truly make functions pure they should not reference anything out side their function. This means all those functions we created referencing the customers array should be refactored to instead accept that array when called.
+> To truly make functions pure they should not reference anything out side their function. This means all those functions we created referencing the customers array should be refactored to instead accept that array when called.
 */
 // Let's start with the filterCustomers function. We on't need to rename it since we are changing the function type. Add an array of Customers as a parameter and access that where we were accessing the customers array directly.
 func filterCustomers(customersIn: [Customer], filter: (Customer) -> Bool) -> [Customer] {
@@ -355,14 +392,15 @@ func getCustomerByIdUsingFilterCustomers(customersIn: [Customer], id: Int) -> [C
 
 
 // Now do the same for setContractDisabledForCustomer, we will need to add a return type of [Customer] since we will now be returning a modified array and not modiying the original array.
-public func setContractDisabledForCustomer(var customersIn: [Customer], customerId: Int) -> [Customer] {
+public func setContractDisabledForCustomer(customersIn: [Customer], customerId: Int) -> [Customer] {
+    var customerArray = customersIn
     for (index, value) in customersIn.enumerate() {
         if customerId == value.customerId {
             value.contract.enabled = false
-            customersIn[index] = value
+            customerArray[index] = value
         }
     }
-    return customersIn
+    return customerArray
 }
 
 let customer007 = getCustomerByIdUsingFilterCustomers(customers, id: 007)

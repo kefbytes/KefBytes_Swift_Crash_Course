@@ -80,11 +80,11 @@ let password2 = "pass1234"          // in this case it will imply that the type 
 /*:
 Did you implicitly set it to be a String or let Swift infer its type?
 */
-// Now change the value of the var you created.
+// Now assign a new value to of the var you created on a new line (keep the original declaration).
 
 // Create a let named songTitle that is of type String and set it's value to some song title
 
-// Now change the value of the let.
+// Now try changing the value of the let on a new line (keep the original declaration).
 
 /*:
 What happened when you tried to change the value?
@@ -137,7 +137,7 @@ var firstName = "Henrieta"
 /*:
 Once you’ve declared a constant or variable of a certain type, you can not redeclare it again with the same name, or change it to store values of a different type. Nor can you change a constant into a variable or a variable into a constant.
 */
-// create a let named instrument of type string and assign it a value of some type of musical instrument
+// create a var named leadInstrument of type string and assign it a value of some type of musical instrument
 
 // assign an Int to the var you just created
 
@@ -147,7 +147,7 @@ Once you’ve declared a constant or variable of a certain type, you can not red
 
 // declare a var named instrument that is of type String
 
-// Can we try the same thing but make it an Int?
+// Can we try the same thing (creating a var named instrument) but make it an Int?
 
 /*:
 ## Strings and Collection Types
@@ -364,7 +364,7 @@ You can enumerate through an array getting the index and value of each element
 */
 // enumerate through your songs array
 
-// Create another array named artists you can combine literal values along with you artist variable when creating it
+// Create another array named artists, you can combine literal values along with you artist variable when creating it
 
 /*:
 You can combine arrays with the + operator
@@ -384,6 +384,13 @@ Collections can only contain one type.
 We can get around this by declaring an Array of type 'Any'
 
 `var someArray = [Any]()`
+ 
+ The one exception to this is when you create an array literal with different types. In this case the array will be of type [NSObject]. But note that you cannot create an array of Ints and then add a String to it turning it into the type [NSObject].
+ 
+`var mixedArray = (1, "two")`
+ 
+ // mixedArray has the type [NSObject]
+
 */
 // Create a mutable array named musicCollection of type Any. Remember in Swift the only difference between mutable and immutable is the declaration with either let or var. Use var to make the array mutable.
 

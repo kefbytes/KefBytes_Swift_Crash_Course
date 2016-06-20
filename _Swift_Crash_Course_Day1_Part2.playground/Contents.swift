@@ -39,7 +39,7 @@ Song(nameIn: "Name of Song", artistIn: "Name of Artist")
 
 // Iterate over the Array and set each item to be of type Song, we can do so because we know the Array holds Songs
 
-// Can you create a shorter version
+// Can you create a shorter by casting to the type Song in the for loop declaration?
 
 // Create an Array named items with type Any. It should hold a String, an Int and a Song
 
@@ -125,7 +125,7 @@ So in this case  (String, Int) -> Void, a function would take a String and an In
 // create a typealias named Response that defines a function definition of (String) -> Void
 
 // Now we can use the Response typealias anywhere a function definition can be used, uncomment the setup func
-//func setup(completion: CoreDataManagerCompletionHandler) {
+//func setup(completion: Response) {
 //    
 //}
 
@@ -208,7 +208,8 @@ If you create an instance of a structure and assign that instance to a constant,
 
 // try changing the value of the var property
 
-// account.accountName = "adminUser"
+// account.accountPassword = "adminUser"
+
 /*:
 **Computed Properties**
 
@@ -272,7 +273,7 @@ struct Button2 {
     }
 }
 
-//simplified version - must have implicit type, if no setter we can remove the get keyword
+//simplified version - must have explicit type, if no setter we can remove the get keyword
 struct Button3 {
     var newPoint:Point
     
@@ -335,7 +336,7 @@ You define type properties with the static keyword.
 static var storedTypeProperty = "Some value."
 }`
 */
-// add a type property to your struct
+// add a type property to your struct named loginAPI
 
 /*:
 You access type properties with dot notation.
@@ -343,7 +344,7 @@ You access type properties with dot notation.
 `SomeStructure.storedTypeProperty`
 */
 // uncomment the next line
-//Account.loginAPI
+// Account.loginAPI
 /*:
 When in a class you can use class instead of static.
 
