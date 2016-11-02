@@ -78,7 +78,6 @@ func getEnabledCustomerFields(fieldName: String) -> [String] {
     var returnedArray = [String]()
     for customer in customers {
         if customer.enabled {
-//            if fieldName == "name" {
             if fieldName == Constants.nameField {
                returnedArray.append(customer.name)
             } else if fieldName == Constants.stateField {
@@ -108,7 +107,7 @@ protocol FieldsDelegate {
     func getField(customer: Customer) -> String
 }
 
-// Rewrite our function replacing the fieldName parameter with the protocol type FieldFunction, then replace the if else block with a call to fieldFunction.getField passing in the urrent customer and appending the result to the array before returning the array
+// Rewrite our function replacing the fieldName parameter with a parameter named fieldFunction of the protocol type FieldsDelegate, then replace the if else block with a call to fieldFunction.getField passing in the current customer and appending the result to the array before returning the array
 func getEnabledCustomerFields(fieldFunction:FieldsDelegate) -> [String] {
     var returnedArray = [String]()
     for customer in customers {
@@ -134,7 +133,7 @@ let customerName = CustomerName()
 getEnabledCustomerFields(customerName)
 
 
-// We could do the same thing with each of the fields, here's the contactField example
+// We could do the same thing with each of the fields, try it with contactField
 class CustomerContact: FieldsDelegate {
     func getField(customer: Customer) -> String {
         return customer.primaryContact
@@ -160,6 +159,7 @@ func getEnabledCustomerFieldsFromFunction(fieldFunction: (Customer) -> String) -
 }
 
 // Now instead of creating a class we can create functions and pass them. We are moving away from object oriented and more towards functional thinking.
+// create a function named getCustomerState that takes a customer and returns a String, which will be the customers state
 func getCustomerState(customer: Customer) -> String {
     return customer.state
 }
@@ -168,6 +168,7 @@ func getCustomerState(customer: Customer) -> String {
 getEnabledCustomerFieldsFromFunction(getCustomerState)
 
 // And of course we could do the same with the other fields just by creating those functions and passing them.
+// Try doing it for the customer domain
 
 func getCustomerDomain(customer: Customer) -> String {
     return customer.domain
@@ -214,16 +215,7 @@ getEnabledCustomerFieldsFromFunction(){
 > So far so good, we are getting functional. Now let's shift gears slightly. What if we wanted to get a list/array of all customers that are enabled? The actual customer objects not just a field from the object?
 Well we'd have to write a second function similar to our  getEnabledCustomerFieldsFromFunction function. But instead of filling our array with field values we'd be filling them with customer objects.
 */
-// Our function would look something like this
-//func getEnabledCustomerInfo(fieldFunction: (Customer) -> Customer) -> [Customer] {
-//    var returnedArray = [Customer]()
-//    for customer in customers {
-//        if customer.enabled {
-//            returnedArray.append(fieldFunction(customer))
-//        }
-//    }
-//    return returnedArray
-//}
+// redo our getEnabledCustomerInfo to return an array of Customers
 
 func getEnabledCustomerInfo() -> [Customer] {
     var returnedArray = [Customer]()
@@ -257,7 +249,7 @@ getEnabledCustomerInfo(){
     (customer: Customer) -> Customer in return customer
 }
 
-// Call the getEnabledCustomers function to get the arrays filled with the various field values that we've been previously using (name, state, primaryContact and domain)
+// Call the getEnabledCustomerInfo function to get the arrays filled with the various field values that we've been previously using (name, state, primaryContact and domain)
 getEnabledCustomerInfo(){
     (customer: Customer) -> String in return customer.name
 }
@@ -279,7 +271,7 @@ getEnabledCustomerInfo(){
 
 > What if we wanted to prepend or postfix something on one of the field values we are returning? Simple just do it in the closure you are passing.
 */
-// Call or getEnabledCustomers function and return an array of states, but postfix the state with a colon and then USA. Example: NC:USA
+// Call our getEnabledCustomers function and return an array of states, but postfix the state with a colon and then USA. Example: NC:USA
 getEnabledCustomerInfo(){
     (customer: Customer) -> String in return "\(customer.state):USA"
 }
@@ -299,6 +291,7 @@ func getCustomerInfo<T>(fieldFunction: (Customer) -> T, isEnabled: (Customer) ->
 }
 
 // Now when we call the getCustomerInfo function we need to pass a closure specifying if we want enabled or disabled customers. keep in mind that only the last closure can be a trailing closure.
+// Call the getCustomerInfo fuction two seperate times once to get enabled customers and once for disabled.
 getCustomerInfo({
     (customer: Customer) -> String in return customer.name})
     { (customer: Customer) -> Bool in return customer.enabled // returns enabled customers
@@ -332,7 +325,7 @@ for customer in customers {
     print("\(customer.customerId) enabled = \(customer.contract.enabled)")
 }
 /*:
-> When we look at this function the first thing we think is that this probably won't be the only instance iin which we want to get a customer by customerId. So we decide to pull that out into it's own function.
+> When we look at this function the first thing we think is that this probably won't be the only instance in which we want to get a customer by customerId. So we decide to pull that out into it's own function.
 */
 // Create a function named getCustomerById that takes a customerId as an argument, loops over the customers array and returns an array with any matching customers. If no customer with that Id exists return an empty array.
 func getCustomerById(id: Int) -> [Customer] {
@@ -399,7 +392,7 @@ func getCustomerByIdUsingFilterCustomers(customersIn: [Customer], ids: [Int]) ->
 }
 
 
-// Now do the same for setContractDisabledForCustomer, we will need to add a return type of [Customer] since we will now be returning a modified array and not modiying the original array.
+// Now do the same for setContractDisabledForCustomer, we will need to add a return type of [Customer] since we will now be returning a modified array and not modifying the original array.
 func setContractDisabledForCustomer(customersIn: [Customer], customerId: Int) -> [Customer] {
     var customerArray = customersIn
     for (index, customer) in customersIn.enumerate() {
@@ -436,7 +429,7 @@ func setContractOnCustomer(customersIn: [Customer], customerId: [Int], contractS
 }
 
 
-// Now we can set the contract on a specific customer, get an array returned with that customer, loop throughh it and print the the results
+// Now we can set the contract on a specific customer, get an array returned with that customer, loop through it and print the the results
 let disabledCustomersArray = setContractOnCustomer(customers, customerId: [007, 001], contractStatus: false)
 print("_______________modified disabled accounts___________________")
 for customer in disabledCustomersArray {
